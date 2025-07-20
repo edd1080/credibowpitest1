@@ -51,50 +51,65 @@ export const NewApplicationCard: React.FC<NewApplicationCardProps> = ({
 
 const styles = StyleSheet.create({
   newApplicationCard: {
-    padding: 20,
-    borderRadius: 16,
+    padding: 24,
+    borderRadius: 20,
     borderWidth: 1,
+    // Enhanced shadow for iOS
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.08,
+    shadowRadius: 12,
+    // Enhanced shadow for Android
+    elevation: 6,
   },
   newApplicationHeader: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 20,
+    marginBottom: 24,
   },
   newApplicationIcon: {
-    width: 56,
-    height: 56,
-    borderRadius: 28,
+    width: 64,
+    height: 64,
+    borderRadius: 32,
     backgroundColor: '#E3F2FD',
     justifyContent: 'center',
     alignItems: 'center',
-    marginRight: 16,
+    marginRight: 20,
   },
   newApplicationText: {
     flex: 1,
   },
   newApplicationTitle: {
     fontFamily: 'Inter-Bold',
-    fontSize: 20,
-    marginBottom: 4,
+    fontSize: 22,
+    marginBottom: 6,
+    letterSpacing: -0.5,
+    lineHeight: 26,
   },
   newApplicationSubtitle: {
     fontFamily: 'Inter-Regular',
-    fontSize: 14,
+    fontSize: 16,
+    lineHeight: 20,
+    opacity: 0.8,
   },
   newApplicationButton: {
-    borderRadius: 12,
+    borderRadius: 16,
   },
   newApplicationButtonGradient: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingVertical: 16,
-    borderRadius: 12,
+    paddingVertical: 18,
+    borderRadius: 16,
     gap: 8,
   },
   newApplicationButtonText: {
     fontFamily: 'Inter-SemiBold',
-    fontSize: 16,
+    fontSize: 17,
     color: '#FFFFFF',
+    letterSpacing: -0.2,
   },
 });

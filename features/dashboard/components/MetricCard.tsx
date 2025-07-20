@@ -24,7 +24,7 @@ export const MetricCard: React.FC<MetricCardProps> = ({
 }) => {
   return (
     <View style={[styles.metricCard, { backgroundColor: colors.card, borderColor: colors.cardBorder }]}>
-      <View style={[styles.metricIconContainer, { backgroundColor: iconBackgroundColor }]}>
+      <View style={[styles.metricIconContainer, { backgroundColor: `${colors.primary}12` }]}>
         {icon}
       </View>
       <Text style={[styles.metricLabel, { color: colors.textSecondary }]}>
@@ -40,31 +40,44 @@ export const MetricCard: React.FC<MetricCardProps> = ({
 const styles = StyleSheet.create({
   metricCard: {
     flex: 1,
-    padding: 20,
-    borderRadius: 16,
+    padding: 24,
+    borderRadius: 20,
     borderWidth: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    minHeight: 140,
+    minHeight: 160,
+    // Enhanced shadow for iOS
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.08,
+    shadowRadius: 12,
+    // Enhanced shadow for Android
+    elevation: 6,
   },
   metricIconContainer: {
-    width: 48,
-    height: 48,
-    borderRadius: 24,
+    width: 56,
+    height: 56,
+    borderRadius: 28,
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 12,
+    marginBottom: 16,
   },
   metricLabel: {
-    fontFamily: 'Inter-Medium',
-    fontSize: 14,
+    fontFamily: 'Inter-SemiBold',
+    fontSize: 15,
     textAlign: 'center',
-    marginBottom: 8,
-    lineHeight: 18,
+    marginBottom: 12,
+    lineHeight: 20,
+    letterSpacing: -0.2,
   },
   metricValue: {
     fontFamily: 'Inter-Bold',
-    fontSize: 32,
+    fontSize: 36,
     textAlign: 'center',
+    letterSpacing: -1,
+    lineHeight: 40,
   },
 });
