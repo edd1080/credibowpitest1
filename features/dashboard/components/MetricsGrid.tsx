@@ -25,28 +25,28 @@ export const MetricsGrid: React.FC<MetricsGridProps> = ({
       label: 'Solicitudes Activas',
       value: metrics.solicitudesActivas,
       icon: <TrendingUp size={24} color="#1976D2" />,
-      iconBackgroundColor: `${colors.primary}12`,
+      iconBackgroundColor: '#E3F2FD',
     },
     {
       key: 'aprobadas',
       label: 'Aprobadas',
       value: metrics.aprobadas,
       icon: <CheckCircle size={24} color="#4CAF50" />,
-      iconBackgroundColor: `${colors.success}12`,
+      iconBackgroundColor: '#E8F5E8',
     },
     {
       key: 'revision',
       label: 'En Revisión',
       value: metrics.enRevision,
       icon: <Clock size={24} color="#FF9800" />,
-      iconBackgroundColor: `${colors.warning}12`,
+      iconBackgroundColor: '#FFF3E0',
     },
     {
       key: 'rechazadas',
       label: 'Rechazadas',
       value: metrics.rechazadas,
       icon: <XCircle size={24} color="#F44336" />,
-      iconBackgroundColor: `${colors.error}12`,
+      iconBackgroundColor: '#FFEBEE',
     },
   ];
 
@@ -92,14 +92,14 @@ export const MetricsGrid: React.FC<MetricsGridProps> = ({
 
 const styles = StyleSheet.create({
   metricsContainer: {
-    paddingHorizontal: 24,
-    marginBottom: 32,
+    paddingHorizontal: 20,
+    marginBottom: 20,
   },
   metricsGrid: {
-    gap: 16,
+    gap: 12,
   },
   metricsRow: {
     flexDirection: 'row',
-    gap: 16,
+    gap: 12,
   },
 });

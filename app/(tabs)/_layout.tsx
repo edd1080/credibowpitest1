@@ -1,6 +1,6 @@
 // Tab layout configuration with custom bottom navigation
 import { Tabs } from 'expo-router';
-import { Chrome as Home, FileText, Bell, Settings, DollarSign } from 'lucide-react-native';
+import { Home, FileText, Bell, Settings } from 'lucide-react-native';
 import { useTheme } from '@/contexts/ThemeContext';
 import { Platform } from 'react-native';
 
@@ -34,15 +34,6 @@ export default function TabLayout() {
           title: 'Inicio',
           tabBarIcon: ({ size, color }) => (
             <Home size={size} color={color} strokeWidth={2} />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="finance"
-        options={{
-          title: 'Finanzas',
-          tabBarIcon: ({ size, color }) => (
-            <DollarSign size={size} color={color} strokeWidth={2} />
           ),
         }}
       />

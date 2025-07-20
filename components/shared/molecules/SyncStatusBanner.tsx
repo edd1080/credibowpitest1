@@ -30,21 +30,15 @@ export const SyncStatusBanner: React.FC<SyncStatusBannerProps> = ({
 
 const styles = StyleSheet.create({
   syncStatus: {
-    marginTop: 16,
+    marginTop: 12,
   },
   syncIndicator: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 8,
-    backgroundColor: 'rgba(245, 158, 11, 0.1)',
-    paddingHorizontal: 12,
-    paddingVertical: 8,
-    borderRadius: 12,
-    alignSelf: 'flex-start',
+    gap: 6,
   },
   syncText: {
-    fontFamily: 'Inter-SemiBold',
-    fontSize: 13,
-    letterSpacing: -0.1,
+    fontFamily: 'Inter-Medium',
+    fontSize: 14,
   },
 });

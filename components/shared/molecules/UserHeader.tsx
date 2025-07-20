@@ -57,16 +57,12 @@ const styles = StyleSheet.create({
   },
   greeting: {
     fontFamily: 'Inter-Bold',
-    fontSize: 32,
-    marginBottom: 6,
-    letterSpacing: -0.8,
-    lineHeight: 38,
+    fontSize: 28,
+    marginBottom: 4,
   },
   userRole: {
     fontFamily: 'Inter-Regular',
-    fontSize: 17,
-    lineHeight: 22,
-    opacity: 0.8,
+    fontSize: 16,
   },
   avatarContainer: {
     width: 48,

@@ -43,7 +43,7 @@ export const RecentApplicationItem: React.FC<RecentApplicationItemProps> = ({
           <Text style={[styles.applicationAmount, { color: colors.text }]}>
             Q{application.amount.toLocaleString()}
           </Text>
-          <View style={[styles.statusBadge, { backgroundColor: `${getStatusColor(application.status, colors)}15` }]}>
+          <View style={[styles.statusBadge, { backgroundColor: `${getStatusColor(application.status, colors)}20` }]}>
             <Text style={[styles.statusText, { color: getStatusColor(application.status, colors) }]}>
               {getStatusText(application.status)}
             </Text>
@@ -56,20 +56,10 @@ export const RecentApplicationItem: React.FC<RecentApplicationItemProps> = ({
 
 const styles = StyleSheet.create({
   applicationCard: {
-    padding: 20,
-    borderRadius: 16,
+    padding: 16,
+    borderRadius: 12,
     borderWidth: 1,
-    marginBottom: 16,
-    // Enhanced shadow for iOS
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.06,
-    shadowRadius: 8,
-    // Enhanced shadow for Android
-    elevation: 4,
+    marginBottom: 12,
   },
   applicationHeader: {
     flexDirection: 'row',
@@ -78,34 +68,28 @@ const styles = StyleSheet.create({
   },
   clientName: {
     fontFamily: 'Inter-SemiBold',
-    fontSize: 17,
-    marginBottom: 6,
-    letterSpacing: -0.2,
-    lineHeight: 22,
+    fontSize: 16,
+    marginBottom: 4,
   },
   applicationDate: {
     fontFamily: 'Inter-Regular',
-    fontSize: 15,
-    lineHeight: 18,
-    opacity: 0.8,
+    fontSize: 14,
   },
   applicationRight: {
     alignItems: 'flex-end',
   },
   applicationAmount: {
     fontFamily: 'Inter-Bold',
-    fontSize: 18,
-    marginBottom: 8,
-    letterSpacing: -0.3,
+    fontSize: 16,
+    marginBottom: 6,
   },
   statusBadge: {
-    paddingHorizontal: 12,
-    paddingVertical: 6,
-    borderRadius: 12,
+    paddingHorizontal: 10,
+    paddingVertical: 4,
+    borderRadius: 8,
   },
   statusText: {
-    fontFamily: 'Inter-SemiBold',
-    fontSize: 13,
-    letterSpacing: -0.1,
+    fontFamily: 'Inter-Medium',
+    fontSize: 12,
   },
 });

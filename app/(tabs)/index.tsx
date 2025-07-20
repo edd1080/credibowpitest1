@@ -49,11 +49,7 @@ export default function HomeScreen() {
         </View>
       )}
       
-      <ScrollView 
-        showsVerticalScrollIndicator={false} 
-        contentContainerStyle={styles.scrollContent}
-        bounces={false}
-      >
+      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollContent}>
         {/* Header con componente UserHeader reutilizable */}
         <View style={styles.header}>
           <UserHeader user={user} colors={colors} />
@@ -108,23 +104,22 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   scrollContent: {
-    paddingBottom: 32,
-  },
-  header: {
-    padding: 24,
     paddingBottom: 20,
   },
+  header: {
+    padding: 20,
+    paddingBottom: 16,
+  },
   newApplicationContainer: {
-    paddingHorizontal: 24,
-    marginBottom: 32,
+    paddingHorizontal: 20,
+    marginBottom: 24,
   },
   section: {
-    paddingHorizontal: 24,
+    paddingHorizontal: 20,
   },
   sectionTitle: {
     fontFamily: 'Inter-Bold',
-    fontSize: 22,
-    marginBottom: 20,
-    letterSpacing: -0.5,
+    fontSize: 20,
+    marginBottom: 16,
   },
 });
