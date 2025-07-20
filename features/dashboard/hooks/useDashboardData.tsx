@@ -28,7 +28,14 @@ export interface MetricCardData {
 }
 
 export const useDashboardData = () => {
-  const { user, isDemoMode } = useAuth();
+  const { user: authUser, isDemoMode } = useAuth();
+  
+  // Extender datos del usuario con información adicional
+  const user = {
+    ...authUser,
+    role: 'Asesor de Créditos',
+    agency: 'Agencia Central'
+  };
 
   // Mock data - en real app vendría de API/local storage
   const metrics: DashboardMetrics = useMemo(() => ({

@@ -1,10 +1,11 @@
 // Componente molecular UserHeader - header de usuario reutilizable
 import React from 'react';
-import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 
 interface User {
   name?: string;
-  avatar?: string;
+  role?: string;
+  agency?: string;
 }
 
 interface UserHeaderProps {
@@ -12,8 +13,6 @@ interface UserHeaderProps {
   colors: {
     text: string;
     textSecondary: string;
-    primary: string;
-    textInverse: string;
   };
 }
 
@@ -23,66 +22,29 @@ export const UserHeader: React.FC<UserHeaderProps> = ({
 }) => {
   return (
     <View style={styles.headerContent}>
-      <View style={styles.headerText}>
-        <Text style={[styles.greeting, { color: colors.text }]}>
-          ¡Hola, {user?.name || 'Usuario'}!
-        </Text>
-        <Text style={[styles.userRole, { color: colors.textSecondary }]}>
-          Asesor de Créditos | Agencia Central
-        </Text>
-      </View>
-      <TouchableOpacity style={styles.avatarContainer}>
-        {user?.avatar ? (
-          <Image source={{ uri: user.avatar }} style={styles.avatar} />
-        ) : (
-          <View style={[styles.avatarPlaceholder, { backgroundColor: colors.primary }]}>
-            <Text style={[styles.avatarText, { color: colors.textInverse }]}>
-              {user?.name?.charAt(0) || 'U'}
-            </Text>
-          </View>
-        )}
-      </TouchableOpacity>
+      <Text style={[styles.greeting, { color: colors.text }]}>
+        ¡Hola, {user?.name || 'Usuario'}!
+      </Text>
+      <Text style={[styles.userRole, { color: colors.textSecondary }]}>
+        {user?.role || 'Asesor de Créditos'} | {user?.agency || 'Agencia Central'}
+      </Text>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   headerContent: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'flex-start',
-  },
-  headerText: {
-    flex: 1,
+    marginBottom: 32,
   },
   greeting: {
     fontFamily: 'Inter-Bold',
-    fontSize: 28,
+    fontSize: 24,
     marginBottom: 4,
+    fontWeight: '700',
   },
   userRole: {
     fontFamily: 'Inter-Regular',
     fontSize: 16,
-  },
-  avatarContainer: {
-    width: 48,
-    height: 48,
-    marginLeft: 16,
-  },
-  avatar: {
-    width: 48,
-    height: 48,
-    borderRadius: 24,
-  },
-  avatarPlaceholder: {
-    width: 48,
-    height: 48,
-    borderRadius: 24,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  avatarText: {
-    fontFamily: 'Inter-SemiBold',
-    fontSize: 18,
+    fontWeight: '400',
   },
 });

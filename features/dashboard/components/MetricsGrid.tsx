@@ -1,7 +1,7 @@
 // Componente organismo MetricsGrid - cuadrícula de métricas reutilizable
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
-import { TrendingUp, CircleCheck as CheckCircle, Clock, Circle as XCircle } from 'lucide-react-native';
+import { TrendingUp, CheckCircle, Clock, XCircle } from 'lucide-react-native';
 import { MetricCard } from './MetricCard';
 import { DashboardMetrics } from '../hooks/useDashboardData';
 
@@ -24,28 +24,28 @@ export const MetricsGrid: React.FC<MetricsGridProps> = ({
       key: 'activas',
       label: 'Solicitudes Activas',
       value: metrics.solicitudesActivas,
-      icon: <TrendingUp size={24} color="#1976D2" />,
-      iconBackgroundColor: '#E3F2FD',
+      icon: <TrendingUp size={20} color="#50A274" />,
+      iconBackgroundColor: '#E8F5E8',
     },
     {
       key: 'aprobadas',
       label: 'Aprobadas',
       value: metrics.aprobadas,
-      icon: <CheckCircle size={24} color="#4CAF50" />,
+      icon: <CheckCircle size={20} color="#50A274" />,
       iconBackgroundColor: '#E8F5E8',
     },
     {
       key: 'revision',
       label: 'En Revisión',
       value: metrics.enRevision,
-      icon: <Clock size={24} color="#FF9800" />,
+      icon: <Clock size={20} color="#FF9800" />,
       iconBackgroundColor: '#FFF3E0',
     },
     {
       key: 'rechazadas',
       label: 'Rechazadas',
       value: metrics.rechazadas,
-      icon: <XCircle size={24} color="#F44336" />,
+      icon: <XCircle size={20} color="#F44336" />,
       iconBackgroundColor: '#FFEBEE',
     },
   ];

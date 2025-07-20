@@ -1,21 +1,18 @@
-// Home/Dashboard screen refactorizado - arquitectura atómica aplicada
+// Home/Dashboard screen rediseñado según mockup
 import React from 'react';
 import { View, Text, ScrollView, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTheme } from '@/contexts/ThemeContext';
-import { router } from 'expo-router';
 
 // Hook personalizado de la feature dashboard
 import { useDashboardData } from '@/features/dashboard/hooks/useDashboardData';
 
 // Componentes compartidos
 import { UserHeader } from '@/components/shared/molecules/UserHeader';
-import { SyncStatusBanner } from '@/components/shared/molecules/SyncStatusBanner';
 
 // Componentes de la feature dashboard
 import { MetricsGrid } from '@/features/dashboard/components/MetricsGrid';
 import { NewApplicationCard } from '@/features/dashboard/components/NewApplicationCard';
-import { RecentApplicationItem } from '@/features/dashboard/components/RecentApplicationItem';
 
 export default function HomeScreen() {
   const { colors } = useTheme();
@@ -23,69 +20,29 @@ export default function HomeScreen() {
   // Hook personalizado que encapsula toda la lógica de datos
   const {
     user,
-    isDemoMode,
-    metrics,
-    recentApplications,
-    getStatusColor,
-    getStatusText,
-    formatDate
+    metrics
   } = useDashboardData();
 
   const handleNewApplication = () => {
-    router.push('/application/new');
-  };
-
-  const handleApplicationPress = (id: string) => {
-    router.push(`/application/${id}`);
+    // TODO: Implementar navegación a pantalla de nueva solicitud
+    console.log('Nueva solicitud - funcionalidad pendiente');
   };
 
   return (
     <SafeAreaView style={[styles.container, { backgroundColor: colors.background }]}>
-      {isDemoMode && (
-        <View style={[styles.demoBanner, { backgroundColor: colors.warning }]}>
-          <Text style={[styles.demoText, { color: colors.textInverse }]}>
-            MODO DEMO - Los datos no son reales
-          </Text>
-        </View>
-      )}
-      
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollContent}>
-        {/* Header con componente UserHeader reutilizable */}
+        {/* Header del usuario */}
         <View style={styles.header}>
           <UserHeader user={user} colors={colors} />
-          
-          {/* Componente SyncStatusBanner reutilizable */}
-          <SyncStatusBanner syncPending={metrics.syncPending} colors={colors} />
         </View>
 
-        {/* Componente MetricsGrid reutilizable */}
+        {/* Grid de métricas */}
         <MetricsGrid metrics={metrics} colors={colors} />
 
-        {/* Componente NewApplicationCard reutilizable */}
+        {/* Tarjeta de nueva solicitud */}
         <View style={styles.newApplicationContainer}>
           <NewApplicationCard onPress={handleNewApplication} colors={colors} />
         </View>
-
-        {/* Recent Applications */}
-        {recentApplications.length > 0 && (
-          <View style={styles.section}>
-            <Text style={[styles.sectionTitle, { color: colors.text }]}>
-              Solicitudes Recientes
-            </Text>
-            
-            {recentApplications.map((app) => (
-              <RecentApplicationItem
-                key={app.id}
-                application={app}
-                onPress={handleApplicationPress}
-                getStatusColor={getStatusColor}
-                getStatusText={getStatusText}
-                formatDate={formatDate}
-                colors={colors}
-              />
-            ))}
-          </View>
-        )}
       </ScrollView>
     </SafeAreaView>
   );
@@ -95,31 +52,15 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  demoBanner: {
-    paddingVertical: 8,
-    alignItems: 'center',
-  },
-  demoText: {
-    fontFamily: 'Inter-SemiBold',
-    fontSize: 14,
-  },
   scrollContent: {
     paddingBottom: 20,
   },
   header: {
-    padding: 20,
-    paddingBottom: 16,
+    paddingHorizontal: 20,
+    paddingTop: 20,
   },
   newApplicationContainer: {
     paddingHorizontal: 20,
-    marginBottom: 24,
-  },
-  section: {
-    paddingHorizontal: 20,
-  },
-  sectionTitle: {
-    fontFamily: 'Inter-Bold',
-    fontSize: 20,
-    marginBottom: 16,
+    marginTop: 24,
   },
 });
