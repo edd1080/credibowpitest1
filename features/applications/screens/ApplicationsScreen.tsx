@@ -85,13 +85,6 @@ export default function ApplicationsScreen() {
         scrollEventThrottle={16}
         bounces={true}
       >
-        {/* Header */}
-        <View style={styles.pullHint}>
-          <Text style={[styles.pullHintText, { color: colors.textTertiary }]}>
-            {showSearchBar ? 'Suelta para ocultar búsqueda' : 'Desliza hacia abajo para buscar'}
-          </Text>
-        </View>
-
         {/* Componente TabNavigation reutilizable */}
         <View style={styles.tabContainer}>
           <TabNavigation
