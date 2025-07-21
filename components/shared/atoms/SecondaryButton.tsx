@@ -1,7 +1,7 @@
 // Componente atómico SecondaryButton - botón secundario con borde reutilizable
 import React from 'react';
 import { TouchableOpacity, Text, StyleSheet, View } from 'react-native';
-import { Edit3 } from 'lucide-react-native';
+import { CreditCard as Edit3 } from 'lucide-react-native';
 
 interface SecondaryButtonProps {
   title: string;

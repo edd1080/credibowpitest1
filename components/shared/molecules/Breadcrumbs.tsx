@@ -1,7 +1,7 @@
 // Componente molecular Breadcrumbs - navegación tipo breadcrumb reutilizable
 import React from 'react';
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
-import { Home, ChevronRight } from 'lucide-react-native';
+import { Chrome as Home, ChevronRight } from 'lucide-react-native';
 
 interface BreadcrumbItem {
   label: string;
