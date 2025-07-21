@@ -47,11 +47,12 @@ const styles = StyleSheet.create({
   },
   primaryButtonGradient: {
     flexDirection: 'row',
-    paddingVertical: 16,
+    paddingVertical: 12,
     borderRadius: 12,
     alignItems: 'center',
     justifyContent: 'center',
     gap: 8,
+    minHeight: 48,
   },
   primaryButtonText: {
     fontFamily: 'Inter-SemiBold',

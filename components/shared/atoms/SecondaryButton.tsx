@@ -52,9 +52,9 @@ const styles = StyleSheet.create({
   secondaryButton: {
     borderWidth: 1.5,
     borderRadius: 12,
-    paddingVertical: 14,
+    paddingVertical: 12,
     paddingHorizontal: 20,
-    minHeight: 52,
+    minHeight: 48,
     justifyContent: 'center',
     alignItems: 'center',
   },

@@ -261,77 +261,77 @@ export default function ApplicationDetailScreen() {
         </View>
       )}
 
-      {/* Barra superior de navegación */}
-      <ApplicationHeaderTopBar
-        applicationId={applicationData.applicationId}
-        status={applicationData.status}
-        onBackPress={handleBackPress}
-        colors={colors}
-      />
-
-      {/* Breadcrumbs */}
-      <Breadcrumbs
-        items={[
-          { label: 'Solicitudes', onPress: () => router.back() },
-          { label: 'Solicitud' }
-        ]}
-        colors={colors}
-      />
-
-      {/* Header de la solicitud */}
-      <View style={styles.applicationHeader}>
-        <Text style={[styles.clientName, { color: colors.text }]}>
-          {applicationData.clientName}
-        </Text>
-        
-        {/* Botones de acción */}
-        <View style={styles.actionButtons}>
-          <View style={styles.editButtonContainer}>
-            <SecondaryButton
-              title="Editar"
-              onPress={handleEditPress}
-              icon={<Edit3 size={18} color={colors.text} />}
-              colors={colors}
-            />
-          </View>
-          
-          <View style={styles.sendButtonContainer}>
-            <PrimaryButton
-              title="Enviar Solicitud"
-              onPress={handleSendPress}
-              disabled={!isComplete}
-              icon={<Send size={18} color="#FFFFFF" />}
-              gradientColors={isComplete ? ['#50A274', '#6BB77B'] : ['#94A3B8', '#CBD5E1']}
-            />
-          </View>
-        </View>
-        
-        {/* Barra de progreso */}
-        <View style={styles.progressSection}>
-          <View style={styles.progressHeader}>
-            <Text style={[styles.progressLabel, { color: colors.textSecondary }]}>
-              Progreso:
-            </Text>
-            <Text style={[styles.progressText, { color: colors.textSecondary }]}>
-              {completedSections}/6 secciones completadas
-            </Text>
-          </View>
-          
-          <View style={[styles.progressBarBackground, { backgroundColor: colors.border }]}>
-            <View 
-              style={[
-                styles.progressBarFill, 
-                { 
-                  backgroundColor: colors.primary,
-                  width: `${applicationData.progressPercentage}%`
-                }
-              ]} 
-            />
-          </View>
-        </View>
-      </View>
-
       <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
+        {/* Barra superior de navegación */}
+        <ApplicationHeaderTopBar
+          applicationId={applicationData.applicationId}
+          status={applicationData.status}
+          onBackPress={handleBackPress}
+          colors={colors}
+        />
+
+        {/* Breadcrumbs */}
+        <Breadcrumbs
+          items={[
+            { label: 'Solicitudes', onPress: () => router.back() },
+            { label: 'Solicitud' }
+          ]}
+          colors={colors}
+        />
+
+        {/* Header de la solicitud */}
+        <View style={styles.applicationHeader}>
+          <Text style={[styles.clientName, { color: colors.text }]}>
+            {applicationData.clientName}
+          </Text>
+          
+          {/* Botones de acción */}
+          <View style={styles.actionButtons}>
+            <View style={styles.editButtonContainer}>
+              <SecondaryButton
+                title="Editar"
+                onPress={handleEditPress}
+                icon={<Edit3 size={18} color={colors.text} />}
+                colors={colors}
+              />
+            </View>
+            
+            <View style={styles.sendButtonContainer}>
+              <PrimaryButton
+                title="Enviar Solicitud"
+                onPress={handleSendPress}
+                disabled={!isComplete}
+                icon={<Send size={18} color="#FFFFFF" />}
+                gradientColors={isComplete ? ['#50A274', '#6BB77B'] : ['#94A3B8', '#CBD5E1']}
+              />
+            </View>
+          </View>
+          
+          {/* Barra de progreso */}
+          <View style={styles.progressSection}>
+            <View style={styles.progressHeader}>
+              <Text style={[styles.progressLabel, { color: colors.textSecondary }]}>
+                Progreso:
+              </Text>
+              <Text style={[styles.progressText, { color: colors.textSecondary }]}>
+                {completedSections}/6 secciones completadas
+              </Text>
+            </View>
+            
+            <View style={[styles.progressBarBackground, { backgroundColor: colors.border }]}>
+              <View 
+                style={[
+                  styles.progressBarFill, 
+                  { 
+                    backgroundColor: colors.primary,
+                    width: `${applicationData.progressPercentage}%`
+                  }
+                ]} 
+              />
+            </View>
+          </View>
+        </View>
+
         {/* Componente Quick Access Grid reutilizable */}
         <QuickAccessGrid colors={colors} />
 
@@ -370,21 +370,19 @@ const styles = StyleSheet.create({
   },
   applicationHeader: {
     paddingHorizontal: 20,
-    paddingVertical: 24,
-    borderBottomWidth: 1,
-    borderBottomColor: 'rgba(0,0,0,0.05)',
+    paddingVertical: 16,
   },
   clientName: {
     fontFamily: 'Inter-Bold',
     fontSize: 28,
     fontWeight: '700',
-    marginBottom: 24,
+    marginBottom: 16,
     letterSpacing: -0.5,
   },
   actionButtons: {
     flexDirection: 'row',
-    gap: 12,
-    marginBottom: 24,
+    gap: 8,
+    marginBottom: 16,
   },
   editButtonContainer: {
     flex: 1,
@@ -393,7 +391,7 @@ const styles = StyleSheet.create({
     flex: 2,
   },
   progressSection: {
-    gap: 12,
+    gap: 8,
   },
   progressHeader: {
     flexDirection: 'row',

@@ -60,14 +60,14 @@ export const ApplicationHeaderTopBar: React.FC<ApplicationHeaderTopBarProps> = (
   const statusConfig = getStatusConfig(status);
 
   return (
-    <View style={[styles.topBar, { backgroundColor: colors.background, borderBottomColor: colors.border }]}>
+    <View style={[styles.topBar, { backgroundColor: colors.background }]}>
       <TouchableOpacity onPress={onBackPress} style={styles.backButton}>
-        <View style={[styles.backButtonContainer, { backgroundColor: '#F3E5F5' }]}>
-          <ArrowLeft size={20} color="#9C27B0" />
+        <View style={[styles.backButtonContainer, { backgroundColor: colors.backgroundSecondary }]}>
+          <ArrowLeft size={20} color={colors.text} />
         </View>
       </TouchableOpacity>
       
-      <Text style={[styles.applicationId, { color: colors.primary }]}>
+      <Text style={[styles.applicationId, { color: colors.text }]}>
         {applicationId}
       </Text>
       
@@ -89,8 +89,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: 20,
-    paddingVertical: 16,
-    borderBottomWidth: 1,
+    paddingVertical: 12,
   },
   backButton: {
     padding: 4,
@@ -109,7 +108,7 @@ const styles = StyleSheet.create({
     letterSpacing: 0.5,
     flex: 1,
     textAlign: 'center',
-    marginHorizontal: 16,
+    marginHorizontal: 8,
   },
   statusBadge: {
     paddingHorizontal: 16,

@@ -53,8 +53,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: 20,
-    paddingVertical: 12,
-    gap: 6,
+    paddingVertical: 8,
+    gap: 4,
   },
   chevron: {
     marginHorizontal: 2,
