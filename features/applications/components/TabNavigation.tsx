@@ -71,9 +71,10 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: '#E2E8F0',
     marginBottom: 8,
+    paddingHorizontal: 20,
   },
   tabsScrollContent: {
-    paddingHorizontal: 20,
+    paddingHorizontal: 0,
   },
   tab: {
     flexDirection: 'row',

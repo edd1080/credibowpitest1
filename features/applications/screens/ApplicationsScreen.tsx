@@ -1,6 +1,6 @@
 // Applications list screen rediseñado con layout limpio
 import React, { useState } from 'react';
-import { View, Text, ScrollView, StyleSheet } from 'react-native';
+import { View, Text, ScrollView, StyleSheet, Animated } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTheme } from '@/contexts/ThemeContext';
 import { router } from 'expo-router';
@@ -19,6 +19,8 @@ export default function ApplicationsScreen() {
   const { colors } = useTheme();
   const [selectedTab, setSelectedTab] = useState<ApplicationStatus>('all');
   const [searchQuery, setSearchQuery] = useState('');
+  const [showSearchBar, setShowSearchBar] = useState(false);
+  const [searchBarHeight] = useState(new Animated.Value(0));
 
   // Hook personalizado que encapsula toda la lógica de datos
   const {
@@ -31,22 +33,63 @@ export default function ApplicationsScreen() {
     router.push(`/application/${id}`);
   };
 
+  const handleScroll = (event: any) => {
+    const { contentOffset } = event.nativeEvent;
+    
+    // Si el usuario hace pull hacia abajo (scroll negativo)
+    if (contentOffset.y < -50 && !showSearchBar) {
+      setShowSearchBar(true);
+      Animated.timing(searchBarHeight, {
+        toValue: 80, // Altura de la barra de búsqueda + padding
+        duration: 300,
+        useNativeDriver: false,
+      }).start();
+    }
+    
+    // Si el usuario scrollea hacia abajo y la barra está visible
+    if (contentOffset.y > 20 && showSearchBar) {
+      setShowSearchBar(false);
+      Animated.timing(searchBarHeight, {
+        toValue: 0,
+        duration: 300,
+        useNativeDriver: false,
+      }).start();
+    }
+  };
+
   return (
     <SafeAreaView style={[styles.container, { backgroundColor: colors.background }]}>
-      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollContent}>
-        {/* Header */}
-        <View style={styles.header}>
-          <Text style={[styles.headerTitle, { color: colors.text }]}>
-            Solicitudes
-          </Text>
-          
-          {/* Componente SearchBar reutilizable */}
+      {/* Header */}
+      <View style={styles.header}>
+        <Text style={[styles.headerTitle, { color: colors.text }]}>
+          Solicitudes
+        </Text>
+      </View>
+
+      {/* Animated Search Bar */}
+      <Animated.View style={[styles.searchBarContainer, { height: searchBarHeight }]}>
+        <View style={styles.searchBarContent}>
           <SearchBar
             value={searchQuery}
             onChangeText={setSearchQuery}
             placeholder="Buscar por nombre o ID..."
             colors={colors}
           />
+        </View>
+      </Animated.View>
+
+      <ScrollView 
+        showsVerticalScrollIndicator={false} 
+        contentContainerStyle={styles.scrollContent}
+        onScroll={handleScroll}
+        scrollEventThrottle={16}
+        bounces={true}
+      >
+        {/* Header */}
+        <View style={styles.pullHint}>
+          <Text style={[styles.pullHintText, { color: colors.textTertiary }]}>
+            {showSearchBar ? 'Suelta para ocultar búsqueda' : 'Desliza hacia abajo para buscar'}
+          </Text>
         </View>
 
         {/* Componente TabNavigation reutilizable */}
@@ -94,16 +137,34 @@ const styles = StyleSheet.create({
   header: {
     paddingHorizontal: 20,
     paddingTop: 20,
-    paddingBottom: 16,
+    paddingBottom: 20,
+    borderBottomWidth: 1,
+    borderBottomColor: 'rgba(0,0,0,0.05)',
   },
   headerTitle: {
     fontFamily: 'Inter-Bold',
     fontSize: 24,
-    marginBottom: 16,
     fontWeight: '700',
   },
-  tabContainer: {
+  searchBarContainer: {
+    overflow: 'hidden',
+    backgroundColor: 'transparent',
+  },
+  searchBarContent: {
     paddingHorizontal: 20,
+    paddingTop: 16,
+    paddingBottom: 8,
+  },
+  pullHint: {
+    alignItems: 'center',
+    paddingVertical: 8,
+  },
+  pullHintText: {
+    fontFamily: 'Inter-Regular',
+    fontSize: 12,
+    fontStyle: 'italic',
+  },
+  tabContainer: {
     marginBottom: 16,
   },
   content: {
