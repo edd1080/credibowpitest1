@@ -18,7 +18,7 @@ export const PrimaryButton: React.FC<PrimaryButtonProps> = ({
   disabled = false,
   isLoading = false,
   icon,
-  gradientColors = ['#6A00F4', '#3B93FF']
+  gradientColors = ['#50A274', '#6BB77B']
 }) => {
   return (
     <TouchableOpacity 

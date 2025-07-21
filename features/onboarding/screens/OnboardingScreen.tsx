@@ -30,7 +30,7 @@ export default function OnboardingScreen() {
       icon: <Smartphone size={48} color="#FFFFFF" />,
       title: 'Digitaliza tus Créditos',
       description: 'Gestiona todo el proceso de originación de créditos desde tu dispositivo móvil, sin papeles.',
-      gradient: ['#6A00F4', '#8A2BE2'],
+      gradient: ['#50A274', '#6BB77B'],
     },
     {
       id: 2,
@@ -44,7 +44,7 @@ export default function OnboardingScreen() {
       icon: <Shield size={48} color="#FFFFFF" />,
       title: 'Trabaja Sin Conexión',
       description: 'Todos los datos se guardan de forma segura en tu dispositivo y se sincronizan cuando tengas conexión.',
-      gradient: ['#00D7B8', '#34D399'],
+      gradient: ['#50A274', '#6BB77B'],
     },
   ];
 

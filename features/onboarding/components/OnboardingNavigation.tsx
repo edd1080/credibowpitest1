@@ -51,7 +51,7 @@ export const OnboardingNavigation: React.FC<OnboardingNavigationProps> = ({
 
         <TouchableOpacity onPress={onNext} style={styles.nextButton}>
           <LinearGradient
-            colors={['#6A00F4', '#3B93FF']}
+            colors={['#50A274', '#6BB77B']}
             style={styles.nextButtonGradient}
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 0 }}
