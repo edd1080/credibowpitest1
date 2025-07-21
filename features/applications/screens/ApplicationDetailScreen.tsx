@@ -1,19 +1,23 @@
 // Application detail screen refactorizado - arquitectura atómica aplicada
 import React from 'react';
-import { View, Text, ScrollView, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import { View, Text, ScrollView, StyleSheet, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTheme } from '@/contexts/ThemeContext';
 import { useAuth } from '@/features/auth/AuthContext';
 import { useLocalSearchParams, router } from 'expo-router';
-import { User, DollarSign, Briefcase, Users, FileText } from 'lucide-react-native';
+import { User, DollarSign, Briefcase, Users, FileText, Edit3, Send } from 'lucide-react-native';
 
 // Hooks personalizados
 import { useApplicationDetailsData } from '../hooks/useApplicationDetailsData';
 import { TabType } from '../types';
 
-// Componentes atómicos y moleculares
-import { ApplicationDetailHeader } from '../components/ApplicationDetailHeader';
-import { ApplicationSummaryCard } from '../components/ApplicationSummaryCard';
+// Componentes nuevos
+import { ApplicationHeaderTopBar } from '../components/ApplicationHeaderTopBar';
+import { Breadcrumbs } from '@/components/shared/molecules/Breadcrumbs';
+import { SecondaryButton } from '@/components/shared/atoms/SecondaryButton';
+import { PrimaryButton } from '@/components/shared/atoms/PrimaryButton';
+
+// Componentes existentes
 import { QuickAccessGrid } from '../components/QuickAccessGrid';
 import { ApplicationTabNavigation } from '../components/ApplicationTabNavigation';
 import { InfoSectionCard, InfoRow } from '../components/InfoSectionCard';
@@ -34,23 +38,25 @@ export default function ApplicationDetailScreen() {
     tabs
   } = useApplicationDetailsData(id as string);
 
-  const handleMenuPress = () => {
-    Alert.alert(
-      'Opciones',
-      'Selecciona una opción',
-      [
-        { text: 'Duplicar solicitud', onPress: () => {} },
-        { text: 'Eliminar solicitud', style: 'destructive', onPress: () => {} },
-        { text: 'Exportar PDF', onPress: () => {} },
-        { text: 'Cancelar', style: 'cancel' },
-      ]
-    );
+  const handleBackPress = () => {
+    router.back();
   };
 
   const handleEditPress = () => {
     // TODO: Navegar a edición de solicitud
     console.log('Edit application');
   };
+
+  const handleSendPress = () => {
+    if (applicationData.progressPercentage === 100) {
+      Alert.alert('Enviar Solicitud', 'La solicitud será enviada para revisión.');
+    } else {
+      Alert.alert('Solicitud Incompleta', 'Completa todas las secciones antes de enviar.');
+    }
+  };
+
+  const isComplete = applicationData.progressPercentage === 100;
+  const completedSections = Math.round((applicationData.progressPercentage / 100) * 6);
 
   const handleRowPress = (sectionType: string, rowIndex: number) => {
     // TODO: Navegar a edición específica
@@ -255,26 +261,77 @@ export default function ApplicationDetailScreen() {
         </View>
       )}
 
-      {/* Componente Header reutilizable */}
-      <ApplicationDetailHeader
-        title="Kevin"
-        subtitle={`Solicitud ${applicationData.applicationId}`}
-        onBackPress={() => router.back()}
-        onMenuPress={handleMenuPress}
+      {/* Barra superior de navegación */}
+      <ApplicationHeaderTopBar
+        applicationId={applicationData.applicationId}
+        status={applicationData.status}
+        onBackPress={handleBackPress}
         colors={colors}
       />
 
-      <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
-        {/* Componente Summary Card reutilizable */}
-        <ApplicationSummaryCard
-          status={applicationData.status}
-          applicationId={applicationData.applicationId}
-          clientName={applicationData.clientName}
-          progressPercentage={applicationData.progressPercentage}
-          onEditPress={handleEditPress}
-          colors={colors}
-        />
+      {/* Breadcrumbs */}
+      <Breadcrumbs
+        items={[
+          { label: 'Solicitudes', onPress: () => router.back() },
+          { label: 'Solicitud' }
+        ]}
+        colors={colors}
+      />
 
+      {/* Header de la solicitud */}
+      <View style={styles.applicationHeader}>
+        <Text style={[styles.clientName, { color: colors.text }]}>
+          {applicationData.clientName}
+        </Text>
+        
+        {/* Botones de acción */}
+        <View style={styles.actionButtons}>
+          <View style={styles.editButtonContainer}>
+            <SecondaryButton
+              title="Editar"
+              onPress={handleEditPress}
+              icon={<Edit3 size={18} color={colors.text} />}
+              colors={colors}
+            />
+          </View>
+          
+          <View style={styles.sendButtonContainer}>
+            <PrimaryButton
+              title="Enviar Solicitud"
+              onPress={handleSendPress}
+              disabled={!isComplete}
+              icon={<Send size={18} color="#FFFFFF" />}
+              gradientColors={isComplete ? ['#50A274', '#6BB77B'] : ['#94A3B8', '#CBD5E1']}
+            />
+          </View>
+        </View>
+        
+        {/* Barra de progreso */}
+        <View style={styles.progressSection}>
+          <View style={styles.progressHeader}>
+            <Text style={[styles.progressLabel, { color: colors.textSecondary }]}>
+              Progreso:
+            </Text>
+            <Text style={[styles.progressText, { color: colors.textSecondary }]}>
+              {completedSections}/6 secciones completadas
+            </Text>
+          </View>
+          
+          <View style={[styles.progressBarBackground, { backgroundColor: colors.border }]}>
+            <View 
+              style={[
+                styles.progressBarFill, 
+                { 
+                  backgroundColor: colors.primary,
+                  width: `${applicationData.progressPercentage}%`
+                }
+              ]} 
+            />
+          </View>
+        </View>
+      </View>
+
+      <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
         {/* Componente Quick Access Grid reutilizable */}
         <QuickAccessGrid colors={colors} />
 
@@ -310,6 +367,57 @@ const styles = StyleSheet.create({
   demoText: {
     fontFamily: 'Inter-SemiBold',
     fontSize: 14,
+  },
+  applicationHeader: {
+    paddingHorizontal: 20,
+    paddingVertical: 24,
+    borderBottomWidth: 1,
+    borderBottomColor: 'rgba(0,0,0,0.05)',
+  },
+  clientName: {
+    fontFamily: 'Inter-Bold',
+    fontSize: 28,
+    fontWeight: '700',
+    marginBottom: 24,
+    letterSpacing: -0.5,
+  },
+  actionButtons: {
+    flexDirection: 'row',
+    gap: 12,
+    marginBottom: 24,
+  },
+  editButtonContainer: {
+    flex: 1,
+  },
+  sendButtonContainer: {
+    flex: 2,
+  },
+  progressSection: {
+    gap: 12,
+  },
+  progressHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  progressLabel: {
+    fontFamily: 'Inter-Medium',
+    fontSize: 16,
+    fontWeight: '500',
+  },
+  progressText: {
+    fontFamily: 'Inter-Regular',
+    fontSize: 16,
+    fontWeight: '400',
+  },
+  progressBarBackground: {
+    height: 8,
+    borderRadius: 4,
+    overflow: 'hidden',
+  },
+  progressBarFill: {
+    height: '100%',
+    borderRadius: 4,
   },
   content: {
     flex: 1,

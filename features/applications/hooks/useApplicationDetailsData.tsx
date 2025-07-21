@@ -8,35 +8,35 @@ export const useApplicationDetailsData = (applicationId: string) => {
   // Mock application data - en real app vendría de API
   const applicationData: ApplicationData = useMemo(() => ({
     id: applicationId,
-    applicationId: 'SCO_503838',
-    clientName: 'Kevin Edgar Flores Laparra',
+    applicationId: 'SCO_459034',
+    clientName: 'María Elena Rodríguez García',
     amount: 25000,
-    status: 'Borrador',
+    status: 'En revisión',
     date: '2025-01-15',
-    currentStep: 'Borrador',
-    progressPercentage: 0,
+    currentStep: 'En revisión',
+    progressPercentage: 67,
     personalInfo: {
-      fullName: 'Kevin Edgar Flores Laparra',
-      dpi: 'Por ingresar',
-      nit: 'Por ingresar',
-      phone: 'Por ingresar',
-      email: 'Por ingresar',
-      agency: 'Por ingresar',
+      fullName: 'María Elena Rodríguez García',
+      dpi: '1234567890101',
+      nit: '12345678',
+      phone: '+502 1234-5678',
+      email: 'maria.rodriguez@email.com',
+      agency: 'Agencia Central',
     },
     financialInfo: {
       requestedAmount: 25000,
-      termMonths: 0,
-      creditType: 'Por definir',
-      purpose: 'Por definir',
-      mainIncome: 0,
-      monthlyExpenses: 0,
-      netWorth: 0,
-      workSituation: 'Por ingresar',
+      termMonths: 12,
+      creditType: 'Crédito Personal',
+      purpose: 'Capital de trabajo',
+      mainIncome: 8000,
+      monthlyExpenses: 3500,
+      netWorth: 45000,
+      workSituation: 'Empleado',
     },
     businessInfo: {
-      businessType: 'Por ingresar',
-      businessAddress: 'Por ingresar',
-      yearsInBusiness: 0,
+      businessType: 'Comercio',
+      businessAddress: 'Zona 1, Guatemala',
+      yearsInBusiness: 3,
     },
     guarantors: [],
     documents: [
@@ -44,7 +44,7 @@ export const useApplicationDetailsData = (applicationId: string) => {
         id: '1', 
         type: 'DPI Frontal', 
         description: 'Documento Personal de Identificación - frente',
-        status: 'pending',
+        status: 'uploaded',
         required: true
       },
       { 
@@ -58,7 +58,7 @@ export const useApplicationDetailsData = (applicationId: string) => {
         id: '3', 
         type: 'Fotografía del Solicitante', 
         description: 'Selfie frontal del solicitante',
-        status: 'pending',
+        status: 'uploaded',
         required: true
       },
       { 
@@ -72,7 +72,7 @@ export const useApplicationDetailsData = (applicationId: string) => {
         id: '5', 
         type: 'Fotografía con Solicitante', 
         description: 'Foto del asesor con el solicitante',
-        status: 'pending',
+        status: 'uploaded',
         required: true
       },
       { 
