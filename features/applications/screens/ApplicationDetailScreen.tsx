@@ -5,7 +5,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTheme } from '@/contexts/ThemeContext';
 import { useAuth } from '@/features/auth/AuthContext';
 import { useLocalSearchParams, router } from 'expo-router';
-import { User, DollarSign, Briefcase, Users, FileText, Edit3, Send } from 'lucide-react-native';
+import { User, DollarSign, Briefcase, Users, FileText, CreditCard as Edit3, Send } from 'lucide-react-native';
 
 // Hooks personalizados
 import { useApplicationDetailsData } from '../hooks/useApplicationDetailsData';
