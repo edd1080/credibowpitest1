@@ -90,28 +90,34 @@ export const InfoSectionCard: React.FC<InfoSectionCardProps> = ({
 
 const styles = StyleSheet.create({
   infoSection: {
-    padding: 20,
-    borderRadius: 16,
+    padding: 16,
+    borderRadius: 8,
     borderWidth: 1,
-    marginBottom: 16,
+    marginBottom: 12,
+    shadowColor: 'rgba(0, 0, 0, 0.05)',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 1,
+    shadowRadius: 2,
+    elevation: 1,
   },
   sectionHeader: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 16,
-    gap: 8,
+    marginBottom: 12,
+    gap: 6,
   },
   sectionTitle: {
     fontFamily: 'Inter-Bold',
-    fontSize: 16,
+    fontSize: 14,
+    fontWeight: '600',
   },
   infoRow: {
-    marginBottom: 16,
+    marginBottom: 12,
   },
   infoLabel: {
     fontFamily: 'Inter-Regular',
-    fontSize: 14,
-    marginBottom: 4,
+    fontSize: 12,
+    marginBottom: 2,
   },
   infoValueContainer: {
     flexDirection: 'row',
@@ -120,7 +126,8 @@ const styles = StyleSheet.create({
   },
   infoValue: {
     fontFamily: 'Inter-SemiBold',
-    fontSize: 16,
+    fontSize: 14,
+    fontWeight: '600',
     flex: 1,
   },
   editButtonContainer: {
@@ -130,17 +137,19 @@ const styles = StyleSheet.create({
   },
   editButton: {
     fontFamily: 'Inter-Medium',
-    fontSize: 14,
+    fontSize: 12,
+    fontWeight: '500',
   },
   requiredField: {
     fontFamily: 'Inter-Medium',
-    fontSize: 14,
+    fontSize: 12,
+    fontWeight: '500',
     flex: 1,
   },
   warningContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 6,
+    gap: 4,
     flex: 1,
   },
 });

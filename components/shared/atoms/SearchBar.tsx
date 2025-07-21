@@ -45,15 +45,16 @@ const styles = StyleSheet.create({
   searchContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 16,
-    paddingVertical: 12,
-    borderRadius: 12,
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+    borderRadius: 6,
     borderWidth: 1,
-    gap: 12,
+    gap: 8,
+    minHeight: 40,
   },
   searchInput: {
     flex: 1,
     fontFamily: 'Inter-Regular',
-    fontSize: 16,
+    fontSize: 14,
   },
 });

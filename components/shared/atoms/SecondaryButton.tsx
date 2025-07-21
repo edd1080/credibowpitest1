@@ -1,12 +1,12 @@
 // Componente atómico SecondaryButton - botón secundario con borde reutilizable
 import React from 'react';
 import { TouchableOpacity, Text, StyleSheet, View } from 'react-native';
+import { Edit3 } from 'lucide-react-native';
 
 interface SecondaryButtonProps {
   title: string;
   onPress: () => void;
   disabled?: boolean;
-  icon?: React.ReactNode;
   colors: {
     background: string;
     border: string;
@@ -19,7 +19,6 @@ export const SecondaryButton: React.FC<SecondaryButtonProps> = ({
   title,
   onPress,
   disabled = false,
-  icon,
   colors
 }) => {
   return (
@@ -36,7 +35,7 @@ export const SecondaryButton: React.FC<SecondaryButtonProps> = ({
       ]}
     >
       <View style={styles.buttonContent}>
-        {icon}
+        <Edit3 size={16} color={disabled ? colors.textTertiary : colors.text} />
         <Text style={[
           styles.secondaryButtonText, 
           { color: disabled ? colors.textTertiary : colors.text }
@@ -51,10 +50,10 @@ export const SecondaryButton: React.FC<SecondaryButtonProps> = ({
 const styles = StyleSheet.create({
   secondaryButton: {
     borderWidth: 1.5,
-    borderRadius: 12,
-    paddingVertical: 12,
-    paddingHorizontal: 20,
-    minHeight: 48,
+    borderRadius: 6,
+    paddingVertical: 8,
+    paddingHorizontal: 16,
+    minHeight: 40,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -64,8 +63,9 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   secondaryButtonText: {
-    fontFamily: 'Inter-SemiBold',
-    fontSize: 16,
-    fontWeight: '600',
+    fontFamily: 'Inter-Medium',
+    fontSize: 14,
+    fontWeight: '500',
+    lineHeight: 20,
   },
 });

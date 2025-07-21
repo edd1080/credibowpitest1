@@ -100,16 +100,21 @@ export const AlertCard: React.FC<AlertCardProps> = ({
 
 const styles = StyleSheet.create({
   alertCard: {
-    padding: 16,
-    borderRadius: 12,
-    marginBottom: 12,
+    padding: 12,
+    borderRadius: 8,
+    marginBottom: 8,
+    shadowColor: 'rgba(0, 0, 0, 0.05)',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 1,
+    shadowRadius: 2,
+    elevation: 1,
   },
   alertHeader: {
     flexDirection: 'row',
   },
   alertIconContainer: {
-    marginRight: 12,
-    marginTop: 2,
+    marginRight: 8,
+    marginTop: 1,
   },
   alertContent: {
     flex: 1,
@@ -117,23 +122,22 @@ const styles = StyleSheet.create({
   alertTitleRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 6,
+    marginBottom: 4,
   },
   alertTitle: {
-    fontSize: 16,
+    fontSize: 14,
     flex: 1,
   },
   unreadDot: {
-    width: 8,
-    height: 8,
-    borderRadius: 4,
-    marginLeft: 8,
+    width: 6,
+    height: 6,
+    borderRadius: 3,
+    marginLeft: 6,
   },
   alertMessage: {
     fontFamily: 'Inter-Regular',
-    fontSize: 14,
-    lineHeight: 20,
-    marginBottom: 8,
+    fontSize: 12,
+    marginBottom: 6,
   },
   alertFooter: {
     flexDirection: 'row',
@@ -142,6 +146,6 @@ const styles = StyleSheet.create({
   },
   alertTimestamp: {
     fontFamily: 'Inter-Regular',
-    fontSize: 12,
+    fontSize: 11,
   },
 });

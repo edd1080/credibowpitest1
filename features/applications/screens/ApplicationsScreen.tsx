@@ -128,25 +128,25 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
   },
   header: {
-    paddingHorizontal: 20,
-    paddingTop: 20,
-    paddingBottom: 20,
+    paddingHorizontal: 16,
+    paddingTop: 16,
+    paddingBottom: 16,
     borderBottomWidth: 1,
     borderBottomColor: 'rgba(0,0,0,0.05)',
   },
   headerTitle: {
     fontFamily: 'Inter-Bold',
-    fontSize: 24,
-    fontWeight: '700',
+    fontSize: 20,
+    fontWeight: '600',
   },
   searchBarContainer: {
     overflow: 'hidden',
     backgroundColor: 'transparent',
   },
   searchBarContent: {
-    paddingHorizontal: 20,
-    paddingTop: 16,
-    paddingBottom: 8,
+    paddingHorizontal: 16,
+    paddingTop: 12,
+    paddingBottom: 6,
   },
   pullHint: {
     alignItems: 'center',
@@ -154,13 +154,13 @@ const styles = StyleSheet.create({
   },
   pullHintText: {
     fontFamily: 'Inter-Regular',
-    fontSize: 12,
+    fontSize: 11,
     fontStyle: 'italic',
   },
   tabContainer: {
-    marginBottom: 16,
+    marginBottom: 12,
   },
   content: {
-    paddingHorizontal: 20,
+    paddingHorizontal: 16,
   },
 });

@@ -57,16 +57,16 @@ export const ApplicationTabNavigation: React.FC<ApplicationTabNavigationProps> =
 
 const styles = StyleSheet.create({
   tabsContainer: {
-    paddingHorizontal: 20,
-    marginBottom: 8,
+    paddingHorizontal: 16,
+    marginBottom: 6,
   },
   tabsScrollContent: {
-    gap: 8,
+    gap: 6,
   },
   tab: {
-    paddingHorizontal: 20,
-    paddingVertical: 12,
-    borderRadius: 20,
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+    borderRadius: 9999,
     backgroundColor: '#F1F5F9',
   },
   activeTab: {
@@ -74,9 +74,10 @@ const styles = StyleSheet.create({
   },
   tabText: {
     fontFamily: 'Inter-Medium',
-    fontSize: 14,
+    fontSize: 12,
+    fontWeight: '500',
   },
   activeTabText: {
-    fontFamily: 'Inter-SemiBold',
+    fontWeight: '600',
   },
 });

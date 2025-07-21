@@ -70,8 +70,8 @@ const styles = StyleSheet.create({
   tabsContainer: {
     borderBottomWidth: 1,
     borderBottomColor: '#E2E8F0',
-    marginBottom: 8,
-    paddingHorizontal: 20,
+    marginBottom: 6,
+    paddingHorizontal: 16,
   },
   tabsScrollContent: {
     paddingHorizontal: 0,
@@ -79,33 +79,35 @@ const styles = StyleSheet.create({
   tab: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingVertical: 16,
-    paddingHorizontal: 4,
-    marginRight: 24,
+    paddingVertical: 12,
+    paddingHorizontal: 2,
+    marginRight: 16,
     borderBottomWidth: 2,
     borderBottomColor: 'transparent',
-    gap: 8,
+    gap: 6,
   },
   activeTab: {
     borderBottomWidth: 2,
   },
   tabText: {
     fontFamily: 'Inter-Medium',
-    fontSize: 16,
+    fontSize: 14,
+    fontWeight: '500',
   },
   activeTabText: {
-    fontFamily: 'Inter-SemiBold',
+    fontWeight: '600',
   },
   tabBadge: {
-    paddingHorizontal: 8,
+    paddingHorizontal: 6,
     paddingVertical: 2,
-    borderRadius: 12,
-    minWidth: 24,
+    borderRadius: 9999,
+    minWidth: 20,
     alignItems: 'center',
     justifyContent: 'center',
   },
   tabBadgeText: {
-    fontFamily: 'Inter-SemiBold',
-    fontSize: 12,
+    fontFamily: 'Inter-Medium',
+    fontSize: 11,
+    fontWeight: '500',
   },
 });

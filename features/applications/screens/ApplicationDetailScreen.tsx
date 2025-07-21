@@ -374,10 +374,10 @@ const styles = StyleSheet.create({
   },
   clientName: {
     fontFamily: 'Inter-Bold',
-    fontSize: 28,
-    fontWeight: '700',
+    fontSize: 24,
+    fontWeight: '600',
     marginBottom: 16,
-    letterSpacing: -0.5,
+    letterSpacing: -0.025,
   },
   actionButtons: {
     flexDirection: 'row',

@@ -1,7 +1,7 @@
 // Componente molecular Breadcrumbs - navegación tipo breadcrumb reutilizable
 import React from 'react';
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
-import { Chrome as Home, ChevronRight } from 'lucide-react-native';
+import { Home, ChevronRight } from 'lucide-react-native';
 
 interface BreadcrumbItem {
   label: string;
@@ -52,20 +52,20 @@ const styles = StyleSheet.create({
   breadcrumbsContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 20,
-    paddingVertical: 8,
-    gap: 4,
+    paddingHorizontal: 16,
+    paddingVertical: 6,
+    gap: 2,
   },
   chevron: {
-    marginHorizontal: 2,
+    marginHorizontal: 1,
   },
   breadcrumbItem: {
-    paddingVertical: 2,
-    paddingHorizontal: 4,
+    paddingVertical: 1,
+    paddingHorizontal: 2,
   },
   breadcrumbText: {
     fontFamily: 'Inter-Regular',
-    fontSize: 14,
+    fontSize: 12,
     fontWeight: '400',
   },
 });
