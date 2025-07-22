@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import { Bell, AlertTriangle, CheckCircle, Info } from 'lucide-react-native';
+import { Bell, TriangleAlert as AlertTriangle, CircleCheck as CheckCircle, Info } from 'lucide-react-native';
 import { useTheme } from '@/contexts/ThemeContext';
 
 interface Alert {
