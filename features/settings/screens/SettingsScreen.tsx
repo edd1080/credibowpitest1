@@ -22,12 +22,24 @@ export default function SettingsScreen() {
         '¿Estás seguro de que quieres salir del modo demo? Se perderán todos los datos de práctica.',
         [
           { text: 'Cancelar', style: 'cancel' },
-          { text: 'Salir', style: 'destructive', onPress: exitDemoMode }
+          { text: 'Salir', style: 'destructive', onPress: () => {
+            exitDemoMode();
+            router.replace('/auth');
+          }}
         ]
       );
     } else {
-      enterDemoMode();
-      router.replace('/(tabs)');
+      Alert.alert(
+        'Modo Demo',
+        'El modo demo te permite explorar la aplicación con datos de prueba.',
+        [
+          { text: 'Cancelar', style: 'cancel' },
+          { text: 'Activar', onPress: () => {
+            enterDemoMode();
+            router.replace('/(tabs)');
+          }}
+        ]
+      );
     }
   };
 

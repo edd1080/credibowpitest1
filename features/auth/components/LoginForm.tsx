@@ -31,14 +31,13 @@ export const LoginForm: React.FC<LoginFormProps> = ({
   onPasswordChange,
   onTogglePassword,
   onSignIn,
-  onForgotPassword,
   colors
 }) => {
   return (
     <View style={styles.form}>
       <AuthInput
         icon={<Mail size={20} color={colors.textSecondary} />}
-        placeholder="Correo electrónico"
+        label="Correo electrónico"
         value={email}
         onChangeText={onEmailChange}
         keyboardType="email-address"
@@ -48,7 +47,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({
 
       <AuthInput
         icon={<Lock size={20} color={colors.textSecondary} />}
-        placeholder="Contraseña"
+        label="Contraseña"
         value={password}
         onChangeText={onPasswordChange}
         secureTextEntry={!showPassword}
@@ -56,15 +55,6 @@ export const LoginForm: React.FC<LoginFormProps> = ({
         onTogglePassword={onTogglePassword}
         colors={colors}
       />
-
-      <TouchableOpacity 
-        onPress={onForgotPassword}
-        style={styles.forgotPassword}
-      >
-        <Text style={[styles.forgotPasswordText, { color: colors.primary }]}>
-          ¿Olvidaste tu contraseña?
-        </Text>
-      </TouchableOpacity>
 
       <PrimaryButton
         title="Iniciar Sesión"
@@ -79,14 +69,5 @@ export const LoginForm: React.FC<LoginFormProps> = ({
 const styles = StyleSheet.create({
   form: {
     marginBottom: 32,
-  },
-  forgotPassword: {
-    alignSelf: 'flex-end',
-    marginBottom: 24,
-    padding: 4,
-  },
-  forgotPasswordText: {
-    fontFamily: 'Inter-Medium',
-    fontSize: 14,
   },
 });

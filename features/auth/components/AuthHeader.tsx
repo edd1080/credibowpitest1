@@ -44,7 +44,7 @@ export const AuthHeader: React.FC<AuthHeaderProps> = ({
 const styles = StyleSheet.create({
   header: {
     marginBottom: 40,
-    alignItems: 'center',
+    alignItems: 'flex-start',
   },
   backButton: {
     alignSelf: 'flex-start',
@@ -55,12 +55,12 @@ const styles = StyleSheet.create({
     fontFamily: 'Inter-Bold',
     fontSize: 28,
     marginBottom: 8,
-    textAlign: 'center',
+    textAlign: 'left',
   },
   subtitle: {
     fontFamily: 'Inter-Regular',
     fontSize: 16,
-    textAlign: 'center',
+    textAlign: 'left',
     lineHeight: 24,
   },
 });

@@ -1,11 +1,11 @@
-// Componente molecular AuthInput - campo de entrada para autenticación reutilizable
+// Componente molecular AuthInput - campo de entrada con label encima reutilizable
 import React from 'react';
-import { View, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 import { Eye, EyeOff } from 'lucide-react-native';
 
 interface AuthInputProps {
   icon: React.ReactNode;
-  placeholder: string;
+  label: string;
   value: string;
   onChangeText: (text: string) => void;
   secureTextEntry?: boolean;
@@ -16,12 +16,13 @@ interface AuthInputProps {
   colors: {
     text: string;
     textSecondary: string;
+    border: string;
   };
 }
 
 export const AuthInput: React.FC<AuthInputProps> = ({
   icon,
-  placeholder,
+  label,
   value,
   onChangeText,
   secureTextEntry = false,
@@ -32,47 +33,57 @@ export const AuthInput: React.FC<AuthInputProps> = ({
   colors
 }) => {
   return (
-    <View style={styles.inputContainer}>
-      {icon}
-      <TextInput
-        style={[styles.input, { color: colors.text }]}
-        placeholder={placeholder}
-        placeholderTextColor={colors.textSecondary}
-        value={value}
-        onChangeText={onChangeText}
-        secureTextEntry={secureTextEntry}
-        keyboardType={keyboardType}
-        autoCapitalize={autoCapitalize}
-      />
-      {showPasswordToggle && onTogglePassword && (
-        <TouchableOpacity onPress={onTogglePassword}>
-          {secureTextEntry ? (
-            <Eye size={20} color={colors.textSecondary} />
-          ) : (
-            <EyeOff size={20} color={colors.textSecondary} />
-          )}
-        </TouchableOpacity>
-      )}
+    <View style={styles.container}>
+      <Text style={[styles.label, { color: colors.text }]}>
+        {label}
+      </Text>
+      <View style={[styles.inputContainer, { borderColor: colors.border }]}>
+        {icon}
+        <TextInput
+          style={[styles.input, { color: colors.text }]}
+          value={value}
+          onChangeText={onChangeText}
+          secureTextEntry={secureTextEntry}
+          keyboardType={keyboardType}
+          autoCapitalize={autoCapitalize}
+        />
+        {showPasswordToggle && onTogglePassword && (
+          <TouchableOpacity onPress={onTogglePassword}>
+            {secureTextEntry ? (
+              <Eye size={20} color={colors.textSecondary} />
+            ) : (
+              <EyeOff size={20} color={colors.textSecondary} />
+            )}
+          </TouchableOpacity>
+        )}
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    marginBottom: 16,
+  },
+  label: {
+    fontFamily: 'Inter-Medium',
+    fontSize: 12,
+    marginBottom: 4,
+  },
   inputContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: 'transparent',
     borderWidth: 1,
-    borderColor: '#E2E8F0',
-    borderRadius: 12,
+    borderRadius: 6,
+    paddingVertical: 10,
     paddingHorizontal: 16,
-    paddingVertical: 16,
-    marginBottom: 16,
     gap: 12,
+    minHeight: 40,
   },
   input: {
     flex: 1,
     fontFamily: 'Inter-Regular',
-    fontSize: 16,
+    fontSize: 14,
   },
 });
