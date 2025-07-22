@@ -1,7 +1,7 @@
 // Componente ApplicationCard rediseñado según especificaciones de Figma
 import React from 'react';
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
-import { CheckCircle, X, Clock, Grid3X3 } from 'lucide-react-native';
+import { CircleCheck as CheckCircle, X, Clock, Grid3x3 as Grid3X3 } from 'lucide-react-native';
 import { Application, ApplicationStatus } from '../types';
 
 interface ApplicationCardProps {
