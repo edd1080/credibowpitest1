@@ -9,6 +9,8 @@
     "lint": "npx expo lint"
   },
   "dependencies": {
+    "@expo-google-fonts/dm-sans": "^0.4.1",
+    "@expo-google-fonts/inter": "^0.2.3",
     "@expo/vector-icons": "^14.1.0",
     "@lucide/lab": "^0.1.2",
     "@react-navigation/bottom-tabs": "^7.2.0",
@@ -29,7 +31,6 @@
     "expo-symbols": "~0.4.3",
     "expo-system-ui": "~5.0.5",
     "expo-web-browser": "~14.1.5",
-    "@expo-google-fonts/inter": "^0.2.3",
     "lucide-react-native": "^0.475.0",
     "react": "19.0.0",
     "react-dom": "19.0.0",

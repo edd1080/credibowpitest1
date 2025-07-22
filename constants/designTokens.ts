@@ -3,10 +3,10 @@ export const DesignTokens = {
   // Tipografía
   typography: {
     fontFamily: {
-      regular: 'Inter-Regular',
-      medium: 'Inter-Medium',
-      semiBold: 'Inter-SemiBold',
-      bold: 'Inter-Bold',
+      regular: 'DM-Sans-Regular',
+      medium: 'DM-Sans-Medium',
+      semiBold: 'DM-Sans-SemiBold',
+      bold: 'DM-Sans-Bold',
     },
     fontSize: {
       xs: 11,
