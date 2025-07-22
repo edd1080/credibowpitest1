@@ -1,6 +1,7 @@
-// Componente molecular ApplicationCard - tarjeta de solicitud con badge de estado
+// Componente ApplicationCard rediseñado según especificaciones de Figma
 import React from 'react';
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { CheckCircle, X, Clock, Grid3X3 } from 'lucide-react-native';
 import { Application, ApplicationStatus } from '../types';
 
 interface ApplicationCardProps {
@@ -23,95 +24,134 @@ export const ApplicationCard: React.FC<ApplicationCardProps> = ({
   formatDate,
   colors
 }) => {
-  const getStatusConfig = (status: ApplicationStatus) => {
+  // Mapear status interno a status de UI
+  const getUIStatus = (status: ApplicationStatus): 'activa' | 'en_revision' | 'aprobada' | 'rechazada' => {
     switch (status) {
-      case 'approved':
-        return {
-          backgroundColor: '#E8F5E8',
-          textColor: '#50A274',
-          borderColor: '#C8E6C9',
-          text: 'Aprobado'
-        };
-      case 'rejected':
-        return {
-          backgroundColor: '#FFEBEE',
-          textColor: '#F44336',
-          borderColor: '#FFCDD2',
-          text: 'Rechazado'
-        };
-      case 'sent':
-        return {
-          backgroundColor: '#FFF3E0',
-          textColor: '#FF9800',
-          borderColor: '#FFE0B2',
-          text: 'En Revisión'
-        };
       case 'pending':
+        return 'activa';
+      case 'sent':
+        return 'en_revision';
+      case 'approved':
+        return 'aprobada';
+      case 'rejected':
+        return 'rechazada';
       default:
+        return 'activa';
+    }
+  };
+
+  // Configuración de iconos y colores por estado
+  const getStatusConfig = (uiStatus: 'activa' | 'en_revision' | 'aprobada' | 'rechazada') => {
+    switch (uiStatus) {
+      case 'activa':
         return {
-          backgroundColor: '#E3F2FD',
-          textColor: '#2196F3',
-          borderColor: '#BBDEFB',
-          text: 'Activo'
+          icon: <Grid3X3 size={32} color="#2563EB" />,
+          badgeText: 'Activa',
+          badgeBackgroundColor: '#2563EB',
+          badgeTextColor: '#FFFFFF',
+          progressColor: '#3B82F6',
+        };
+      case 'en_revision':
+        return {
+          icon: <Clock size={32} color="#F97316" />,
+          badgeText: 'En Revisión',
+          badgeBackgroundColor: '#F97316',
+          badgeTextColor: '#FFFFFF',
+          progressColor: '#F97316',
+        };
+      case 'aprobada':
+        return {
+          icon: <CheckCircle size={32} color="#22C55E" />,
+          badgeText: 'Aprobada',
+          badgeBackgroundColor: '#22C55E',
+          badgeTextColor: '#FFFFFF',
+          progressColor: '#22C55E',
+        };
+      case 'rechazada':
+        return {
+          icon: <X size={32} color="#EF4444" />,
+          badgeText: 'Rechazada',
+          badgeBackgroundColor: '#EF4444',
+          badgeTextColor: '#FFFFFF',
+          progressColor: '#EF4444',
         };
     }
   };
 
-  const statusConfig = getStatusConfig(application.status);
+  const uiStatus = getUIStatus(application.status);
+  const statusConfig = getStatusConfig(uiStatus);
+
+  // Formatear monto
+  const formatAmount = (amount: number) => {
+    return `Q${amount.toLocaleString('es-GT', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+  };
 
   return (
     <TouchableOpacity
-      style={[styles.applicationCard, { backgroundColor: colors.card, borderColor: colors.cardBorder }]}
+      style={[styles.card, { backgroundColor: colors.card }]}
       onPress={() => onPress(application.id)}
+      activeOpacity={0.7}
     >
-      {/* Header con nombre y badge de estado */}
+      {/* Línea 1: Header */}
       <View style={styles.header}>
-        <Text style={[styles.clientName, { color: colors.text }]} numberOfLines={2}>
-          {application.clientName}
-        </Text>
+        <View style={styles.headerLeft}>
+          {statusConfig.icon}
+          <Text style={styles.applicationId}>
+            {application.applicationId}
+          </Text>
+        </View>
         <View style={[
-          styles.statusBadge, 
-          { 
-            backgroundColor: statusConfig.backgroundColor,
-            borderColor: statusConfig.borderColor
-          }
+          styles.statusBadge,
+          { backgroundColor: statusConfig.badgeBackgroundColor }
         ]}>
-          <Text style={[styles.statusText, { color: statusConfig.textColor }]}>
-            {statusConfig.text}
+          <Text style={[
+            styles.statusBadgeText,
+            { color: statusConfig.badgeTextColor }
+          ]}>
+            {statusConfig.badgeText}
           </Text>
         </View>
       </View>
 
-      {/* ID y Fecha */}
-      <Text style={[styles.applicationDetails, { color: colors.textSecondary }]}>
-        {application.applicationId} • {formatDate(application.date)}
+      {/* Línea 2: Nombre del solicitante */}
+      <Text style={styles.clientName} numberOfLines={1}>
+        {application.clientName}
       </Text>
 
-      {/* Etapa actual */}
-      <Text style={[styles.currentStep, { color: colors.textSecondary }]}>
+      {/* Línea 3: Etapa actual */}
+      <Text style={styles.currentStage}>
         {application.currentStep}
       </Text>
 
-      {/* Progress section */}
+      {/* Línea 4: Barra de progreso */}
       <View style={styles.progressSection}>
-        <View style={styles.progressHeader}>
-          <Text style={[styles.progressLabel, { color: colors.textTertiary }]}>
-            Progreso
-          </Text>
-          <Text style={[styles.progressPercentage, { color: colors.text }]}>
-            {application.progressPercentage}%
-          </Text>
+        <View style={styles.progressBarContainer}>
+          <View style={styles.progressBarBackground}>
+            <View 
+              style={[
+                styles.progressBarFill,
+                { 
+                  backgroundColor: statusConfig.progressColor,
+                  width: `${application.progressPercentage}%`
+                }
+              ]} 
+            />
+          </View>
         </View>
-        <View style={[styles.progressBarBackground, { backgroundColor: colors.border }]}>
-          <View 
-            style={[
-              styles.progressBarFill, 
-              { 
-                backgroundColor: statusConfig.textColor,
-                width: `${application.progressPercentage}%`
-              }
-            ]} 
-          />
+        <Text style={styles.progressPercentage}>
+          {application.progressPercentage}%
+        </Text>
+      </View>
+
+      {/* Línea 5: Información adicional */}
+      <View style={styles.additionalInfo}>
+        <View style={styles.infoColumn}>
+          <Text style={styles.infoLabel}>Etapa</Text>
+          <Text style={styles.infoValue}>{application.currentStep}</Text>
+        </View>
+        <View style={styles.infoColumn}>
+          <Text style={styles.infoLabel}>Monto solicitado</Text>
+          <Text style={styles.infoValue}>{formatAmount(application.amount)}</Text>
         </View>
       </View>
     </TouchableOpacity>
@@ -119,81 +159,99 @@ export const ApplicationCard: React.FC<ApplicationCardProps> = ({
 };
 
 const styles = StyleSheet.create({
-  applicationCard: {
-    padding: 16,
-    borderRadius: 8,
-    borderWidth: 1,
-    marginBottom: 12,
+  card: {
     backgroundColor: '#FFFFFF',
-    shadowColor: 'rgba(0, 0, 0, 0.05)',
+    borderRadius: 12,
+    padding: 16,
+    marginBottom: 12,
+    shadowColor: '#000000',
     shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 1,
-    shadowRadius: 2,
-    elevation: 1,
+    shadowOpacity: 0.1,
+    shadowRadius: 3,
+    elevation: 2,
   },
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'flex-start',
-    marginBottom: 10,
+    alignItems: 'center',
+    marginBottom: 12,
+  },
+  headerLeft: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    flex: 1,
     gap: 8,
   },
-  clientName: {
-    fontFamily: 'Inter-Bold',
-    fontSize: 16,
-    fontWeight: '600',
-    lineHeight: 20,
-    flex: 1,
+  applicationId: {
+    fontSize: 12,
+    color: '#6B7280',
+    fontFamily: 'Inter-Regular',
   },
   statusBadge: {
+    paddingVertical: 4,
     paddingHorizontal: 8,
-    paddingVertical: 2,
-    borderRadius: 9999,
-    borderWidth: 1,
-    alignSelf: 'flex-start',
+    borderRadius: 16,
   },
-  statusText: {
-    fontFamily: 'Inter-Medium',
+  statusBadgeText: {
     fontSize: 12,
-    fontWeight: '500',
+    fontFamily: 'Inter-Bold',
+    fontWeight: '700',
   },
-  applicationDetails: {
-    fontFamily: 'Inter-Regular',
-    fontSize: 12,
-    fontWeight: '400',
-    marginBottom: 6,
+  clientName: {
+    fontSize: 16,
+    fontFamily: 'Inter-Bold',
+    fontWeight: '700',
+    color: '#111827',
+    marginBottom: 8,
   },
-  currentStep: {
-    fontFamily: 'Inter-Medium',
+  currentStage: {
     fontSize: 14,
-    fontWeight: '500',
+    fontFamily: 'Inter-Regular',
+    color: '#6B7280',
     marginBottom: 12,
   },
   progressSection: {
-    gap: 6,
-  },
-  progressHeader: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
     alignItems: 'center',
+    marginBottom: 16,
+    gap: 12,
   },
-  progressLabel: {
-    fontFamily: 'Inter-Medium',
-    fontSize: 12,
-    fontWeight: '500',
-  },
-  progressPercentage: {
-    fontFamily: 'Inter-Bold',
-    fontSize: 12,
-    fontWeight: '600',
+  progressBarContainer: {
+    flex: 1,
   },
   progressBarBackground: {
-    height: 6,
-    borderRadius: 3,
+    height: 8,
+    backgroundColor: '#E5E7EB',
+    borderRadius: 8,
     overflow: 'hidden',
   },
   progressBarFill: {
     height: '100%',
-    borderRadius: 3,
+    borderRadius: 8,
+  },
+  progressPercentage: {
+    fontSize: 12,
+    fontFamily: 'Inter-SemiBold',
+    fontWeight: '600',
+    color: '#111827',
+  },
+  additionalInfo: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  infoColumn: {
+    flex: 1,
+  },
+  infoLabel: {
+    fontSize: 12,
+    fontFamily: 'Inter-Regular',
+    color: '#6B7280',
+    marginBottom: 2,
+  },
+  infoValue: {
+    fontSize: 12,
+    fontFamily: 'Inter-Medium',
+    fontWeight: '500',
+    color: '#374151',
   },
 });
