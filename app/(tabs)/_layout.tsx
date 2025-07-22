@@ -5,7 +5,7 @@ import { useTheme } from '@/contexts/ThemeContext';
 import { Platform } from 'react-native';
 
 export default function TabLayout() {
-  const { colors } = useTheme();
+  const { colors, tokens } = useTheme();
 
   return (
     <Tabs
@@ -22,7 +22,7 @@ export default function TabLayout() {
         tabBarActiveTintColor: colors.primary,
         tabBarInactiveTintColor: colors.textTertiary,
         tabBarLabelStyle: {
-          fontFamily: colors.tokens.typography.fontFamily.medium,
+          fontFamily: tokens.typography.fontFamily.medium,
           fontSize: 12,
           marginTop: 4,
         },
