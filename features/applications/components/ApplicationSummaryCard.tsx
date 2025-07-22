@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   applicationStatus: {
-    fontFamily: 'Inter-Bold',
+    fontFamily: 'DM-Sans-Bold',
     fontSize: 24,
   },
   statusBadge: {
@@ -109,16 +109,16 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
   statusBadgeText: {
-    fontFamily: 'Inter-SemiBold',
+    fontFamily: 'DM-Sans-SemiBold',
     fontSize: 12,
   },
   applicationId: {
-    fontFamily: 'Inter-Bold',
+    fontFamily: 'DM-Sans-Bold',
     fontSize: 20,
     marginBottom: 8,
   },
   clientName: {
-    fontFamily: 'Inter-Regular',
+    fontFamily: 'DM-Sans-Regular',
     fontSize: 18,
     marginBottom: 20,
   },
@@ -132,11 +132,11 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   progressLabel: {
-    fontFamily: 'Inter-Regular',
+    fontFamily: 'DM-Sans-Regular',
     fontSize: 16,
   },
   progressPercentage: {
-    fontFamily: 'Inter-Bold',
+    fontFamily: 'DM-Sans-Bold',
     fontSize: 16,
   },
   progressBarBackground: {
@@ -160,7 +160,7 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   editApplicationText: {
-    fontFamily: 'Inter-SemiBold',
+    fontFamily: 'DM-Sans-SemiBold',
     fontSize: 16,
   },
 });

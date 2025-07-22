@@ -67,19 +67,19 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
   },
   clientName: {
-    fontFamily: 'Inter-SemiBold',
+    fontFamily: 'DM-Sans-SemiBold',
     fontSize: 16,
     marginBottom: 4,
   },
   applicationDate: {
-    fontFamily: 'Inter-Regular',
+    fontFamily: 'DM-Sans-Regular',
     fontSize: 14,
   },
   applicationRight: {
     alignItems: 'flex-end',
   },
   applicationAmount: {
-    fontFamily: 'Inter-Bold',
+    fontFamily: 'DM-Sans-Bold',
     fontSize: 16,
     marginBottom: 6,
   },
@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
   },
   statusText: {
-    fontFamily: 'Inter-Medium',
+    fontFamily: 'DM-Sans-Medium',
     fontSize: 12,
   },
 });

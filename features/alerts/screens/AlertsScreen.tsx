@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   demoText: {
-    fontFamily: 'Inter-SemiBold',
+    fontFamily: 'DM-Sans-SemiBold',
     fontSize: 14,
   },
   content: {

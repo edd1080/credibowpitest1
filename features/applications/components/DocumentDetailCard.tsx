@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   documentCardTitle: {
-    fontFamily: 'Inter-Bold',
+    fontFamily: 'DM-Sans-Bold',
     fontSize: 16,
     lineHeight: 20,
     flex: 1,
@@ -135,11 +135,11 @@ const styles = StyleSheet.create({
     borderRadius: 12,
   },
   requiredBadgeText: {
-    fontFamily: 'Inter-SemiBold',
+    fontFamily: 'DM-Sans-SemiBold',
     fontSize: 11,
   },
   documentCardDescription: {
-    fontFamily: 'Inter-Regular',
+    fontFamily: 'DM-Sans-Regular',
     fontSize: 13,
     lineHeight: 18,
   },
@@ -167,11 +167,11 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   documentActionText: {
-    fontFamily: 'Inter-SemiBold',
+    fontFamily: 'DM-Sans-SemiBold',
     fontSize: 14,
   },
   documentActionTextSecondary: {
-    fontFamily: 'Inter-SemiBold',
+    fontFamily: 'DM-Sans-SemiBold',
     fontSize: 14,
   },
 });

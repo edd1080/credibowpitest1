@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
     borderBottomColor: 'rgba(0,0,0,0.05)',
   },
   headerTitle: {
-    fontFamily: 'Inter-Bold',
+    fontFamily: 'DM-Sans-Bold',
     fontSize: 20,
     fontWeight: '600',
   },
@@ -153,7 +153,7 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
   },
   pullHintText: {
-    fontFamily: 'Inter-Regular',
+    fontFamily: 'DM-Sans-Regular',
     fontSize: 11,
     fontStyle: 'italic',
   },

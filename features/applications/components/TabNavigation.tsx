@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 2,
   },
   tabText: {
-    fontFamily: 'Inter-Medium',
+    fontFamily: 'DM-Sans-Medium',
     fontSize: 14,
     fontWeight: '500',
   },
@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   tabBadgeText: {
-    fontFamily: 'Inter-Medium',
+    fontFamily: 'DM-Sans-Medium',
     fontSize: 11,
     fontWeight: '500',
   },

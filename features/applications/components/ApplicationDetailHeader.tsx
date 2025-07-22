@@ -59,11 +59,11 @@ const styles = StyleSheet.create({
     marginLeft: 16,
   },
   headerTitle: {
-    fontFamily: 'Inter-Bold',
+    fontFamily: 'DM-Sans-Bold',
     fontSize: 20,
   },
   headerSubtitle: {
-    fontFamily: 'Inter-Regular',
+    fontFamily: 'DM-Sans-Regular',
     fontSize: 14,
     marginTop: 2,
   },

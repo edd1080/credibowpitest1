@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   financialTitle: {
-    fontFamily: 'Inter-Bold',
+    fontFamily: 'DM-Sans-Bold',
     fontSize: 18,
   },
   financialGrid: {
@@ -114,12 +114,12 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   financialLabel: {
-    fontFamily: 'Inter-Regular',
+    fontFamily: 'DM-Sans-Regular',
     fontSize: 14,
     marginBottom: 4,
   },
   financialValue: {
-    fontFamily: 'Inter-Bold',
+    fontFamily: 'DM-Sans-Bold',
     fontSize: 18,
   },
 });

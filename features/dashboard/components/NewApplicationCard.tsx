@@ -51,12 +51,12 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   newApplicationTitle: {
-    fontFamily: 'Inter-Bold',
+    fontFamily: 'DM-Sans-Bold',
     fontSize: 18,
     fontWeight: '700',
   },
   newApplicationSubtitle: {
-    fontFamily: 'Inter-Regular',
+    fontFamily: 'DM-Sans-Regular',
     fontSize: 14,
     marginBottom: 20,
     fontWeight: '400',
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   newApplicationButtonText: {
-    fontFamily: 'Inter-SemiBold',
+    fontFamily: 'DM-Sans-SemiBold',
     fontSize: 16,
     color: '#FFFFFF',
     fontWeight: '600',

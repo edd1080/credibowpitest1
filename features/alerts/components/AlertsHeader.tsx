@@ -56,18 +56,18 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   headerTitle: {
-    fontFamily: 'Inter-Bold',
+    fontFamily: 'DM-Sans-Bold',
     fontSize: 28,
   },
   markAllButton: {
     padding: 4,
   },
   markAllText: {
-    fontFamily: 'Inter-Medium',
+    fontFamily: 'DM-Sans-Medium',
     fontSize: 14,
   },
   unreadCount: {
-    fontFamily: 'Inter-Regular',
+    fontFamily: 'DM-Sans-Regular',
     fontSize: 14,
   },
 });

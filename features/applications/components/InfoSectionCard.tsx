@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
     gap: 6,
   },
   sectionTitle: {
-    fontFamily: 'Inter-Bold',
+    fontFamily: 'DM-Sans-Bold',
     fontSize: 14,
     fontWeight: '600',
   },
@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   infoLabel: {
-    fontFamily: 'Inter-Regular',
+    fontFamily: 'DM-Sans-Regular',
     fontSize: 12,
     marginBottom: 2,
   },
@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   infoValue: {
-    fontFamily: 'Inter-SemiBold',
+    fontFamily: 'DM-Sans-SemiBold',
     fontSize: 14,
     fontWeight: '600',
     flex: 1,
@@ -136,12 +136,12 @@ const styles = StyleSheet.create({
     gap: 4,
   },
   editButton: {
-    fontFamily: 'Inter-Medium',
+    fontFamily: 'DM-Sans-Medium',
     fontSize: 12,
     fontWeight: '500',
   },
   requiredField: {
-    fontFamily: 'Inter-Medium',
+    fontFamily: 'DM-Sans-Medium',
     fontSize: 12,
     fontWeight: '500',
     flex: 1,

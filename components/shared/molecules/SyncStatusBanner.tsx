@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     gap: 6,
   },
   syncText: {
-    fontFamily: 'Inter-Medium',
+    fontFamily: 'DM-Sans-Medium',
     fontSize: 14,
   },
 });

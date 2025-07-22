@@ -365,7 +365,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   demoText: {
-    fontFamily: 'Inter-SemiBold',
+    fontFamily: 'DM-Sans-SemiBold',
     fontSize: 14,
   },
   applicationHeader: {
@@ -373,7 +373,7 @@ const styles = StyleSheet.create({
     paddingVertical: 16,
   },
   clientName: {
-    fontFamily: 'Inter-Bold',
+    fontFamily: 'DM-Sans-Bold',
     fontSize: 24,
     fontWeight: '600',
     marginBottom: 16,
@@ -399,12 +399,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   progressLabel: {
-    fontFamily: 'Inter-Medium',
+    fontFamily: 'DM-Sans-Medium',
     fontSize: 16,
     fontWeight: '500',
   },
   progressText: {
-    fontFamily: 'Inter-Regular',
+    fontFamily: 'DM-Sans-Regular',
     fontSize: 16,
     fontWeight: '400',
   },
@@ -437,7 +437,7 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   sectionTitle: {
-    fontFamily: 'Inter-Bold',
+    fontFamily: 'DM-Sans-Bold',
     fontSize: 16,
   },
   documentsColumn: {

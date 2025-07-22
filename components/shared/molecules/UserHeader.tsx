@@ -37,13 +37,13 @@ const styles = StyleSheet.create({
     marginBottom: 32,
   },
   greeting: {
-    fontFamily: 'Inter-Bold',
+    fontFamily: 'DM-Sans-Bold',
     fontSize: 24,
     marginBottom: 4,
     fontWeight: '700',
   },
   userRole: {
-    fontFamily: 'Inter-Regular',
+    fontFamily: 'DM-Sans-Regular',
     fontSize: 16,
     fontWeight: '400',
   },

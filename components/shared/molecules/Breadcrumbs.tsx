@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 2,
   },
   breadcrumbText: {
-    fontFamily: 'Inter-Regular',
+    fontFamily: 'DM-Sans-Regular',
     fontSize: 12,
     fontWeight: '400',
   },

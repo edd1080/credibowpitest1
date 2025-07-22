@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
   quickAccessTitle: {
-    fontFamily: 'Inter-Bold',
+    fontFamily: 'DM-Sans-Bold',
     fontSize: 18,
     marginBottom: 16,
   },

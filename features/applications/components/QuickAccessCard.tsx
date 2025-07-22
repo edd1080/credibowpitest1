@@ -59,14 +59,14 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   quickAccessCardTitle: {
-    fontFamily: 'Inter-SemiBold',
+    fontFamily: 'DM-Sans-SemiBold',
     fontSize: 14,
     textAlign: 'center',
     marginBottom: 4,
     lineHeight: 18,
   },
   quickAccessCardSubtitle: {
-    fontFamily: 'Inter-Regular',
+    fontFamily: 'DM-Sans-Regular',
     fontSize: 12,
     textAlign: 'center',
   },

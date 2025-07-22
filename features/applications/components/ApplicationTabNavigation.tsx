@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#1976D2',
   },
   tabText: {
-    fontFamily: 'Inter-Medium',
+    fontFamily: 'DM-Sans-Medium',
     fontSize: 12,
     fontWeight: '500',
   },

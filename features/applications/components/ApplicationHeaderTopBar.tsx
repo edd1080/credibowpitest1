@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   applicationId: {
-    fontFamily: 'Inter-Bold',
+    fontFamily: 'DM-Sans-Bold',
     fontSize: 18,
     fontWeight: '600',
     letterSpacing: 0,
@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
     borderRadius: 9999,
   },
   statusText: {
-    fontFamily: 'Inter-Medium',
+    fontFamily: 'DM-Sans-Medium',
     fontSize: 12,
     fontWeight: '500',
   },
