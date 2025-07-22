@@ -1,11 +1,10 @@
-// Componente molecular QuickAccessCard - tarjeta individual de acceso rápido
+// Componente molecular QuickAccessCard - tarjeta individual rediseñada según Figma
 import React from 'react';
-import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { TouchableOpacity, Text, StyleSheet, View } from 'react-native';
 
 interface QuickAccessCardProps {
   icon: React.ReactNode;
   title: string;
-  subtitle: string;
   completed: boolean;
   onPress: () => void;
   colors: {
@@ -19,7 +18,6 @@ interface QuickAccessCardProps {
 export const QuickAccessCard: React.FC<QuickAccessCardProps> = ({
   icon,
   title,
-  subtitle,
   completed,
   onPress,
   colors
@@ -27,47 +25,54 @@ export const QuickAccessCard: React.FC<QuickAccessCardProps> = ({
   return (
     <TouchableOpacity
       onPress={onPress}
-      style={[styles.quickAccessCard, { backgroundColor: colors.surfaceSecondary, borderColor: colors.border }]}
+      style={styles.card}
+      activeOpacity={0.7}
     >
-      <View style={[styles.quickAccessIcon, { backgroundColor: '#E3F2FD' }]}>
+      {/* Ícono circular con fondo lavanda */}
+      <View style={styles.iconContainer}>
         {icon}
       </View>
-      <Text style={[styles.quickAccessCardTitle, { color: colors.text }]}>
+      
+      {/* Título de la sección */}
+      <Text style={styles.title} numberOfLines={2}>
         {title}
-      </Text>
-      <Text style={[styles.quickAccessCardSubtitle, { color: colors.textSecondary }]}>
-        {subtitle}
       </Text>
     </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
-  quickAccessCard: {
-    width: '48%',
-    padding: 16,
+  card: {
+    backgroundColor: '#FFFFFF',
     borderRadius: 12,
-    borderWidth: 1,
+    padding: 16,
     alignItems: 'center',
+    justifyContent: 'center',
+    width: '48%', // Para grid 2 columnas con gap
+    minHeight: 100,
+    shadowColor: '#000000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.05,
+    shadowRadius: 2,
+    elevation: 1,
+    borderWidth: 1,
+    borderColor: '#F1F5F9',
   },
-  quickAccessIcon: {
+  iconContainer: {
     width: 48,
     height: 48,
     borderRadius: 24,
+    backgroundColor: '#EFEAFE', // Fondo lavanda como en Figma
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 12,
   },
-  quickAccessCardTitle: {
+  title: {
     fontFamily: 'Inter-SemiBold',
     fontSize: 14,
+    fontWeight: '600',
+    color: '#111827',
     textAlign: 'center',
-    marginBottom: 4,
     lineHeight: 18,
-  },
-  quickAccessCardSubtitle: {
-    fontFamily: 'Inter-Regular',
-    fontSize: 12,
-    textAlign: 'center',
   },
 });

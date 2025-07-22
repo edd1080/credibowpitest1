@@ -1,7 +1,7 @@
-// Componente organismo QuickAccessGrid - cuadrícula de acceso rápido a secciones
+// Componente organismo QuickAccessGrid - panel de navegación rápida rediseñado según Figma
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { User, DollarSign, Briefcase, Users, FileText, CircleCheck as CheckCircle } from 'lucide-react-native';
+import { User, DollarSign, MapPin, Users, FileText, CheckCircle } from 'lucide-react-native';
 import { QuickAccessCard } from './QuickAccessCard';
 
 interface QuickAccessGridProps {
@@ -12,6 +12,7 @@ interface QuickAccessGridProps {
     surfaceSecondary: string;
     border: string;
     textSecondary: string;
+    primary: string;
   };
 }
 
@@ -20,43 +21,37 @@ export const QuickAccessGrid: React.FC<QuickAccessGridProps> = ({ colors }) => {
     {
       id: 'identification',
       title: 'Identificación y Contacto',
-      subtitle: 'Datos básicos',
-      icon: <User size={24} color="#1976D2" />,
+      icon: <User size={24} color="#6366F1" />,
       completed: false,
     },
     {
       id: 'finances',
       title: 'Finanzas y Patrimonio',
-      subtitle: 'Información financiera',
-      icon: <DollarSign size={24} color="#1976D2" />,
+      icon: <DollarSign size={24} color="#6366F1" />,
       completed: false,
     },
     {
       id: 'business',
       title: 'Negocio y Perfil Económico',
-      subtitle: 'Perfil económico',
-      icon: <Briefcase size={24} color="#1976D2" />,
+      icon: <MapPin size={24} color="#6366F1" />,
       completed: false,
     },
     {
       id: 'guarantors',
-      title: 'Garantías, Fiadores y Referencias',
-      subtitle: 'Fiadores y referencias',
-      icon: <Users size={24} color="#1976D2" />,
+      title: 'Fiadores y Referencias',
+      icon: <Users size={24} color="#6366F1" />,
       completed: false,
     },
     {
       id: 'documents',
-      title: 'Documentos y Cierre',
-      subtitle: 'Documentos y cierre',
-      icon: <FileText size={24} color="#1976D2" />,
+      title: 'Documentos',
+      icon: <FileText size={24} color="#6366F1" />,
       completed: false,
     },
     {
       id: 'review',
       title: 'Revisión Final',
-      subtitle: 'Revisión final',
-      icon: <CheckCircle size={24} color="#1976D2" />,
+      icon: <CheckCircle size={24} color="#6366F1" />,
       completed: false,
     },
   ];
@@ -67,18 +62,24 @@ export const QuickAccessGrid: React.FC<QuickAccessGridProps> = ({ colors }) => {
   };
 
   return (
-    <View style={[styles.quickAccessContainer, { backgroundColor: colors.card, borderColor: colors.cardBorder }]}>
-      <Text style={[styles.quickAccessTitle, { color: colors.text }]}>
-        Acceso Rápido a Secciones
-      </Text>
+    <View style={styles.quickAccessContainer}>
+      {/* Header con ícono y título */}
+      <View style={styles.header}>
+        <View style={styles.headerIcon}>
+          <FileText size={20} color="#6366F1" />
+        </View>
+        <Text style={[styles.title, { color: colors.text }]}>
+          Acceso Rápido
+        </Text>
+      </View>
       
-      <View style={styles.quickAccessGrid}>
+      {/* Grid 2x3 de tarjetas */}
+      <View style={styles.grid}>
         {quickAccessSections.map((section) => (
           <QuickAccessCard
             key={section.id}
             icon={section.icon}
             title={section.title}
-            subtitle={section.subtitle}
             completed={section.completed}
             onPress={() => handleSectionPress(section.id)}
             colors={colors}
@@ -91,19 +92,38 @@ export const QuickAccessGrid: React.FC<QuickAccessGridProps> = ({ colors }) => {
 
 const styles = StyleSheet.create({
   quickAccessContainer: {
-    margin: 20,
-    padding: 20,
+    backgroundColor: '#F8FAFC', // Fondo verde claro/gris muy claro
     borderRadius: 16,
-    borderWidth: 1,
+    padding: 20,
+    margin: 16,
+    shadowColor: '#000000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.05,
+    shadowRadius: 2,
+    elevation: 1,
   },
-  quickAccessTitle: {
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 20,
+    gap: 8,
+  },
+  headerIcon: {
+    width: 24,
+    height: 24,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  title: {
     fontFamily: 'Inter-Bold',
     fontSize: 18,
-    marginBottom: 16,
+    fontWeight: '700',
+    color: '#111827',
   },
-  quickAccessGrid: {
+  grid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     gap: 12,
+    justifyContent: 'space-between',
   },
 });
