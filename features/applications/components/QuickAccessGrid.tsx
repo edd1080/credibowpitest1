@@ -1,7 +1,7 @@
 // Componente organismo QuickAccessGrid - panel de navegación rápida rediseñado según Figma
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { User, DollarSign, MapPin, Users, FileText, CheckCircle } from 'lucide-react-native';
+import { User, DollarSign, MapPin, Users, FileText, CircleCheck as CheckCircle } from 'lucide-react-native';
 import { QuickAccessCard } from './QuickAccessCard';
 
 interface QuickAccessGridProps {
