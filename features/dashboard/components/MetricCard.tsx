@@ -1,6 +1,7 @@
 // Componente molecular MetricCard - tarjeta de métrica individual reutilizable
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import { DesignTokens } from '@/constants/designTokens';
 
 interface MetricCardProps {
   icon: React.ReactNode;
@@ -23,14 +24,47 @@ export const MetricCard: React.FC<MetricCardProps> = ({
   colors
 }) => {
   return (
-    <View style={[styles.metricCard, { backgroundColor: colors.card, borderColor: colors.cardBorder }]}>
-      <View style={[styles.metricIconContainer, { backgroundColor: iconBackgroundColor }]}>
+    <View style={[
+      styles.metricCard, 
+      { 
+        backgroundColor: colors.card, 
+        borderColor: colors.cardBorder,
+        borderRadius: DesignTokens.borderRadius.lg,
+        padding: DesignTokens.spacing.md,
+        ...DesignTokens.shadows.sm,
+      }
+    ]}>
+      <View style={[
+        styles.metricIconContainer, 
+        { 
+          backgroundColor: iconBackgroundColor,
+          width: 36,
+          height: 36,
+          borderRadius: 18,
+          marginBottom: DesignTokens.spacing.sm,
+        }
+      ]}>
         {icon}
       </View>
-      <Text style={[styles.metricLabel, { color: colors.textSecondary }]}>
+      <Text style={[
+        styles.metricLabel, 
+        { 
+          color: colors.textSecondary,
+          fontFamily: DesignTokens.typography.fontFamily.medium,
+          fontSize: DesignTokens.typography.fontSize.sm,
+          marginBottom: DesignTokens.spacing.xs + 2, // 6px
+        }
+      ]}>
         {label}
       </Text>
-      <Text style={[styles.metricValue, { color: colors.text }]}>
+      <Text style={[
+        styles.metricValue, 
+        { 
+          color: colors.text,
+          fontFamily: DesignTokens.typography.fontFamily.bold,
+          fontSize: DesignTokens.typography.fontSize['3xl'],
+        }
+      ]}>
         {value}
       </Text>
     </View>
@@ -40,38 +74,21 @@ export const MetricCard: React.FC<MetricCardProps> = ({
 const styles = StyleSheet.create({
   metricCard: {
     flex: 1,
-    padding: 12,
-    borderRadius: 8,
-    borderWidth: 1,
     alignItems: 'center',
     justifyContent: 'center',
     minHeight: 100,
-    backgroundColor: '#FFFFFF',
-    shadowColor: 'rgba(0, 0, 0, 0.05)',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 1,
-    shadowRadius: 2,
-    elevation: 1,
+    borderWidth: 1,
   },
   metricIconContainer: {
-    width: 36,
-    height: 36,
-    borderRadius: 18,
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 8,
   },
   metricLabel: {
-    fontFamily: 'Inter-Medium',
-    fontSize: 12,
     textAlign: 'center',
-    marginBottom: 6,
-    fontWeight: '500',
+    fontWeight: DesignTokens.typography.fontWeight.medium,
   },
   metricValue: {
-    fontFamily: 'Inter-Bold',
-    fontSize: 24,
     textAlign: 'center',
-    fontWeight: '600',
+    fontWeight: DesignTokens.typography.fontWeight.bold,
   },
 });

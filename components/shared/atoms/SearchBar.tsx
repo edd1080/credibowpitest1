@@ -2,6 +2,7 @@
 import React from 'react';
 import { View, TextInput, StyleSheet } from 'react-native';
 import { Search } from 'lucide-react-native';
+import { DesignTokens } from '@/constants/designTokens';
 
 interface SearchBarProps {
   value: string;
@@ -26,12 +27,23 @@ export const SearchBar: React.FC<SearchBarProps> = ({
       styles.searchContainer, 
       { 
         backgroundColor: colors.surfaceSecondary, 
-        borderColor: colors.border 
+        borderColor: colors.border,
+        borderRadius: DesignTokens.borderRadius.md,
+        paddingHorizontal: DesignTokens.spacing.md,
+        paddingVertical: DesignTokens.spacing.sm,
+        minHeight: DesignTokens.heights.input,
       }
     ]}>
-      <Search size={20} color={colors.textSecondary} />
+      <Search size={DesignTokens.widths.icon.md} color={colors.textSecondary} />
       <TextInput
-        style={[styles.searchInput, { color: colors.text }]}
+        style={[
+          styles.searchInput, 
+          { 
+            color: colors.text,
+            fontFamily: DesignTokens.typography.fontFamily.regular,
+            fontSize: DesignTokens.typography.fontSize.base,
+          }
+        ]}
         placeholder={placeholder}
         placeholderTextColor={colors.textSecondary}
         value={value}
@@ -45,16 +57,10 @@ const styles = StyleSheet.create({
   searchContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 12,
-    paddingVertical: 8,
-    borderRadius: 6,
     borderWidth: 1,
-    gap: 8,
-    minHeight: 40,
+    gap: DesignTokens.spacing.sm,
   },
   searchInput: {
     flex: 1,
-    fontFamily: 'Inter-Regular',
-    fontSize: 14,
   },
 });

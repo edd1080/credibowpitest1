@@ -2,11 +2,13 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { Appearance, ColorSchemeName } from 'react-native';
 import * as SecureStore from 'expo-secure-store';
+import { DesignTokens } from '@/constants/designTokens';
 
 interface ThemeContextType {
   isDark: boolean;
   toggleTheme: () => void;
   colors: typeof lightColors | typeof darkColors;
+  tokens: typeof DesignTokens;
 }
 
 const lightColors = {
@@ -115,7 +117,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const colors = isDark ? darkColors : lightColors;
 
   return (
-    <ThemeContext.Provider value={{ isDark, toggleTheme, colors }}>
+    <ThemeContext.Provider value={{ isDark, toggleTheme, colors, tokens: DesignTokens }}>
       {children}
     </ThemeContext.Provider>
   );

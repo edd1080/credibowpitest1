@@ -1,8 +1,9 @@
 // Componente ApplicationCard rediseñado según especificaciones de Figma
 import React from 'react';
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
-import { CircleCheck as CheckCircle, X, Clock, Grid3x3 as Grid3X3 } from 'lucide-react-native';
+import { CircleCheck as CheckCircle, X, Clock, Grid3x3 } from 'lucide-react-native';
 import { Application, ApplicationStatus } from '../types';
+import { DesignTokens } from '@/constants/designTokens';
 
 interface ApplicationCardProps {
   application: Application;
@@ -45,7 +46,7 @@ export const ApplicationCard: React.FC<ApplicationCardProps> = ({
     switch (uiStatus) {
       case 'activa':
         return {
-          icon: <Grid3X3 size={32} color="#2563EB" />,
+          icon: <Grid3x3 size={DesignTokens.widths.icon.xl} color="#2563EB" />,
           badgeText: 'Activa',
           badgeBackgroundColor: '#2563EB',
           badgeTextColor: '#FFFFFF',
@@ -53,7 +54,7 @@ export const ApplicationCard: React.FC<ApplicationCardProps> = ({
         };
       case 'en_revision':
         return {
-          icon: <Clock size={32} color="#F97316" />,
+          icon: <Clock size={DesignTokens.widths.icon.xl} color="#F97316" />,
           badgeText: 'En Revisión',
           badgeBackgroundColor: '#F97316',
           badgeTextColor: '#FFFFFF',
@@ -61,7 +62,7 @@ export const ApplicationCard: React.FC<ApplicationCardProps> = ({
         };
       case 'aprobada':
         return {
-          icon: <CheckCircle size={32} color="#22C55E" />,
+          icon: <CheckCircle size={DesignTokens.widths.icon.xl} color="#22C55E" />,
           badgeText: 'Aprobada',
           badgeBackgroundColor: '#22C55E',
           badgeTextColor: '#FFFFFF',
@@ -69,7 +70,7 @@ export const ApplicationCard: React.FC<ApplicationCardProps> = ({
         };
       case 'rechazada':
         return {
-          icon: <X size={32} color="#EF4444" />,
+          icon: <X size={DesignTokens.widths.icon.xl} color="#EF4444" />,
           badgeText: 'Rechazada',
           badgeBackgroundColor: '#EF4444',
           badgeTextColor: '#FFFFFF',
@@ -88,25 +89,50 @@ export const ApplicationCard: React.FC<ApplicationCardProps> = ({
 
   return (
     <TouchableOpacity
-      style={[styles.card, { backgroundColor: colors.card }]}
+      style={[
+        styles.card, 
+        { 
+          backgroundColor: colors.card,
+          borderRadius: DesignTokens.borderRadius.xl,
+          padding: DesignTokens.spacing.lg,
+          marginBottom: DesignTokens.spacing.md,
+          ...DesignTokens.shadows.md,
+        }
+      ]}
       onPress={() => onPress(application.id)}
       activeOpacity={0.7}
     >
       {/* Línea 1: Header */}
-      <View style={styles.header}>
-        <View style={styles.headerLeft}>
+      <View style={[styles.header, { marginBottom: DesignTokens.spacing.md }]}>
+        <View style={[styles.headerLeft, { gap: DesignTokens.spacing.sm }]}>
           {statusConfig.icon}
-          <Text style={styles.applicationId}>
+          <Text style={[
+            styles.applicationId,
+            {
+              fontSize: DesignTokens.typography.fontSize.sm,
+              color: '#6B7280',
+              fontFamily: DesignTokens.typography.fontFamily.regular,
+            }
+          ]}>
             {application.applicationId}
           </Text>
         </View>
         <View style={[
           styles.statusBadge,
-          { backgroundColor: statusConfig.badgeBackgroundColor }
+          { 
+            backgroundColor: statusConfig.badgeBackgroundColor,
+            paddingVertical: DesignTokens.spacing.xs,
+            paddingHorizontal: DesignTokens.spacing.sm,
+            borderRadius: DesignTokens.borderRadius.full,
+          }
         ]}>
           <Text style={[
             styles.statusBadgeText,
-            { color: statusConfig.badgeTextColor }
+            { 
+              color: statusConfig.badgeTextColor,
+              fontSize: DesignTokens.typography.fontSize.sm,
+              fontFamily: DesignTokens.typography.fontFamily.bold,
+            }
           ]}>
             {statusConfig.badgeText}
           </Text>
@@ -114,31 +140,63 @@ export const ApplicationCard: React.FC<ApplicationCardProps> = ({
       </View>
 
       {/* Línea 2: Nombre del solicitante */}
-      <Text style={styles.clientName} numberOfLines={1}>
+      <Text style={[
+        styles.clientName,
+        {
+          fontSize: DesignTokens.typography.fontSize.lg,
+          fontFamily: DesignTokens.typography.fontFamily.bold,
+          color: '#111827',
+          marginBottom: DesignTokens.spacing.sm,
+        }
+      ]} numberOfLines={1}>
         {application.clientName}
       </Text>
 
       {/* Línea 3: Etapa actual */}
-      <Text style={styles.currentStage}>
+      <Text style={[
+        styles.currentStage,
+        {
+          fontSize: DesignTokens.typography.fontSize.base,
+          fontFamily: DesignTokens.typography.fontFamily.regular,
+          color: '#6B7280',
+          marginBottom: DesignTokens.spacing.md,
+        }
+      ]}>
         {application.currentStep}
       </Text>
 
       {/* Línea 4: Barra de progreso */}
-      <View style={styles.progressSection}>
+      <View style={[styles.progressSection, { marginBottom: DesignTokens.spacing.lg, gap: DesignTokens.spacing.md }]}>
         <View style={styles.progressBarContainer}>
-          <View style={styles.progressBarBackground}>
+          <View style={[
+            styles.progressBarBackground,
+            {
+              height: 8,
+              backgroundColor: '#E5E7EB',
+              borderRadius: DesignTokens.borderRadius.lg,
+            }
+          ]}>
             <View 
               style={[
                 styles.progressBarFill,
                 { 
                   backgroundColor: statusConfig.progressColor,
-                  width: `${application.progressPercentage}%`
+                  width: `${application.progressPercentage}%`,
+                  height: '100%',
+                  borderRadius: DesignTokens.borderRadius.lg,
                 }
               ]} 
             />
           </View>
         </View>
-        <Text style={styles.progressPercentage}>
+        <Text style={[
+          styles.progressPercentage,
+          {
+            fontSize: DesignTokens.typography.fontSize.sm,
+            fontFamily: DesignTokens.typography.fontFamily.semiBold,
+            color: '#111827',
+          }
+        ]}>
           {application.progressPercentage}%
         </Text>
       </View>
@@ -146,12 +204,50 @@ export const ApplicationCard: React.FC<ApplicationCardProps> = ({
       {/* Línea 5: Información adicional */}
       <View style={styles.additionalInfo}>
         <View style={styles.infoColumn}>
-          <Text style={styles.infoLabel}>Etapa</Text>
-          <Text style={styles.infoValue}>{application.currentStep}</Text>
+          <Text style={[
+            styles.infoLabel,
+            {
+              fontSize: DesignTokens.typography.fontSize.sm,
+              fontFamily: DesignTokens.typography.fontFamily.regular,
+              color: '#6B7280',
+              marginBottom: 2,
+            }
+          ]}>
+            Etapa
+          </Text>
+          <Text style={[
+            styles.infoValue,
+            {
+              fontSize: DesignTokens.typography.fontSize.sm,
+              fontFamily: DesignTokens.typography.fontFamily.medium,
+              color: '#374151',
+            }
+          ]}>
+            {application.currentStep}
+          </Text>
         </View>
         <View style={styles.infoColumn}>
-          <Text style={styles.infoLabel}>Monto solicitado</Text>
-          <Text style={styles.infoValue}>{formatAmount(application.amount)}</Text>
+          <Text style={[
+            styles.infoLabel,
+            {
+              fontSize: DesignTokens.typography.fontSize.sm,
+              fontFamily: DesignTokens.typography.fontFamily.regular,
+              color: '#6B7280',
+              marginBottom: 2,
+            }
+          ]}>
+            Monto solicitado
+          </Text>
+          <Text style={[
+            styles.infoValue,
+            {
+              fontSize: DesignTokens.typography.fontSize.sm,
+              fontFamily: DesignTokens.typography.fontFamily.medium,
+              color: '#374151',
+            }
+          ]}>
+            {formatAmount(application.amount)}
+          </Text>
         </View>
       </View>
     </TouchableOpacity>
@@ -160,80 +256,48 @@ export const ApplicationCard: React.FC<ApplicationCardProps> = ({
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: '#FFFFFF',
-    borderRadius: 12,
-    padding: 16,
-    marginBottom: 12,
-    shadowColor: '#000000',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.1,
-    shadowRadius: 3,
-    elevation: 2,
+    // Estilos dinámicos aplicados arriba
   },
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 12,
   },
   headerLeft: {
     flexDirection: 'row',
     alignItems: 'center',
     flex: 1,
-    gap: 8,
   },
   applicationId: {
-    fontSize: 12,
-    color: '#6B7280',
-    fontFamily: 'Inter-Regular',
+    // Estilos dinámicos aplicados arriba
   },
   statusBadge: {
-    paddingVertical: 4,
-    paddingHorizontal: 8,
-    borderRadius: 16,
+    // Estilos dinámicos aplicados arriba
   },
   statusBadgeText: {
-    fontSize: 12,
-    fontFamily: 'Inter-Bold',
-    fontWeight: '700',
+    fontWeight: DesignTokens.typography.fontWeight.bold,
   },
   clientName: {
-    fontSize: 16,
-    fontFamily: 'Inter-Bold',
-    fontWeight: '700',
-    color: '#111827',
-    marginBottom: 8,
+    fontWeight: DesignTokens.typography.fontWeight.bold,
   },
   currentStage: {
-    fontSize: 14,
-    fontFamily: 'Inter-Regular',
-    color: '#6B7280',
-    marginBottom: 12,
+    // Estilos dinámicos aplicados arriba
   },
   progressSection: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 16,
-    gap: 12,
   },
   progressBarContainer: {
     flex: 1,
   },
   progressBarBackground: {
-    height: 8,
-    backgroundColor: '#E5E7EB',
-    borderRadius: 8,
     overflow: 'hidden',
   },
   progressBarFill: {
-    height: '100%',
-    borderRadius: 8,
+    // Estilos dinámicos aplicados arriba
   },
   progressPercentage: {
-    fontSize: 12,
-    fontFamily: 'Inter-SemiBold',
-    fontWeight: '600',
-    color: '#111827',
+    fontWeight: DesignTokens.typography.fontWeight.semiBold,
   },
   additionalInfo: {
     flexDirection: 'row',
@@ -243,15 +307,9 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   infoLabel: {
-    fontSize: 12,
-    fontFamily: 'Inter-Regular',
-    color: '#6B7280',
-    marginBottom: 2,
+    // Estilos dinámicos aplicados arriba
   },
   infoValue: {
-    fontSize: 12,
-    fontFamily: 'Inter-Medium',
-    fontWeight: '500',
-    color: '#374151',
+    fontWeight: DesignTokens.typography.fontWeight.medium,
   },
 });

@@ -2,6 +2,7 @@
 import React from 'react';
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
+import { DesignTokens } from '@/constants/designTokens';
 
 interface PrimaryButtonProps {
   title: string;
@@ -9,6 +10,7 @@ interface PrimaryButtonProps {
   disabled?: boolean;
   isLoading?: boolean;
   icon?: React.ReactNode;
+  size?: 'default' | 'large';
   gradientColors?: string[];
 }
 
@@ -18,22 +20,40 @@ export const PrimaryButton: React.FC<PrimaryButtonProps> = ({
   disabled = false,
   isLoading = false,
   icon,
+  size = 'default',
   gradientColors = ['#50A274', '#6BB77B']
 }) => {
+  const buttonHeight = size === 'large' ? DesignTokens.heights.buttonLarge : DesignTokens.heights.button;
+
   return (
     <TouchableOpacity 
       onPress={onPress} 
       disabled={disabled || isLoading}
-      style={styles.primaryButton}
+      style={[styles.primaryButton, { marginBottom: DesignTokens.spacing.xl }]}
     >
       <LinearGradient
         colors={gradientColors}
-        style={[styles.primaryButtonGradient, (disabled || isLoading) && styles.disabledButton]}
+        style={[
+          styles.primaryButtonGradient, 
+          { 
+            minHeight: buttonHeight,
+            borderRadius: DesignTokens.borderRadius.md,
+            paddingVertical: DesignTokens.spacing.sm,
+            paddingHorizontal: DesignTokens.spacing.lg,
+          },
+          (disabled || isLoading) && styles.disabledButton
+        ]}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 0 }}
       >
         {icon}
-        <Text style={styles.primaryButtonText}>
+        <Text style={[
+          styles.primaryButtonText,
+          {
+            fontFamily: DesignTokens.typography.fontFamily.medium,
+            fontSize: DesignTokens.typography.fontSize.base,
+          }
+        ]}>
           {isLoading ? 'Cargando...' : title}
         </Text>
       </LinearGradient>
@@ -43,22 +63,16 @@ export const PrimaryButton: React.FC<PrimaryButtonProps> = ({
 
 const styles = StyleSheet.create({
   primaryButton: {
-    marginBottom: 24,
+    // marginBottom se aplica dinámicamente
   },
   primaryButtonGradient: {
     flexDirection: 'row',
-    paddingVertical: 8,
-    paddingHorizontal: 16,
-    borderRadius: 6,
     alignItems: 'center',
     justifyContent: 'center',
-    gap: 8,
-    minHeight: 40,
+    gap: DesignTokens.spacing.sm,
   },
   primaryButtonText: {
-    fontFamily: 'Inter-Medium',
-    fontSize: 14,
-    fontWeight: '500',
+    fontWeight: DesignTokens.typography.fontWeight.medium,
     lineHeight: 20,
     color: '#FFFFFF',
   },

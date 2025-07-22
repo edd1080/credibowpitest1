@@ -2,6 +2,7 @@
 import React from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 import { Eye, EyeOff } from 'lucide-react-native';
+import { DesignTokens } from '@/constants/designTokens';
 
 interface AuthInputProps {
   icon: React.ReactNode;
@@ -33,14 +34,38 @@ export const AuthInput: React.FC<AuthInputProps> = ({
   colors
 }) => {
   return (
-    <View style={styles.container}>
-      <Text style={[styles.label, { color: colors.text }]}>
+    <View style={[styles.container, { marginBottom: DesignTokens.spacing.lg }]}>
+      <Text style={[
+        styles.label, 
+        { 
+          color: colors.text,
+          fontFamily: DesignTokens.typography.fontFamily.medium,
+          fontSize: DesignTokens.typography.fontSize.sm,
+          marginBottom: DesignTokens.spacing.xs,
+        }
+      ]}>
         {label}
       </Text>
-      <View style={[styles.inputContainer, { borderColor: colors.border }]}>
+      <View style={[
+        styles.inputContainer, 
+        { 
+          borderColor: colors.border,
+          borderRadius: DesignTokens.borderRadius.md,
+          paddingVertical: DesignTokens.spacing.sm + 2, // 10px
+          paddingHorizontal: DesignTokens.spacing.lg,
+          minHeight: DesignTokens.heights.input,
+        }
+      ]}>
         {icon}
         <TextInput
-          style={[styles.input, { color: colors.text }]}
+          style={[
+            styles.input, 
+            { 
+              color: colors.text,
+              fontFamily: DesignTokens.typography.fontFamily.regular,
+              fontSize: DesignTokens.typography.fontSize.base,
+            }
+          ]}
           value={value}
           onChangeText={onChangeText}
           secureTextEntry={secureTextEntry}
@@ -50,9 +75,9 @@ export const AuthInput: React.FC<AuthInputProps> = ({
         {showPasswordToggle && onTogglePassword && (
           <TouchableOpacity onPress={onTogglePassword}>
             {secureTextEntry ? (
-              <Eye size={20} color={colors.textSecondary} />
+              <Eye size={DesignTokens.widths.icon.md} color={colors.textSecondary} />
             ) : (
-              <EyeOff size={20} color={colors.textSecondary} />
+              <EyeOff size={DesignTokens.widths.icon.md} color={colors.textSecondary} />
             )}
           </TouchableOpacity>
         )}
@@ -63,27 +88,19 @@ export const AuthInput: React.FC<AuthInputProps> = ({
 
 const styles = StyleSheet.create({
   container: {
-    marginBottom: 16,
+    // marginBottom se aplica dinámicamente
   },
   label: {
-    fontFamily: 'Inter-Medium',
-    fontSize: 12,
-    marginBottom: 4,
+    // Estilos se aplican dinámicamente
   },
   inputContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: 'transparent',
     borderWidth: 1,
-    borderRadius: 6,
-    paddingVertical: 10,
-    paddingHorizontal: 16,
-    gap: 12,
-    minHeight: 40,
+    gap: DesignTokens.spacing.md,
   },
   input: {
     flex: 1,
-    fontFamily: 'Inter-Regular',
-    fontSize: 14,
   },
 });

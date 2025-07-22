@@ -2,6 +2,7 @@
 import React from 'react';
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
 import { ArrowLeft } from 'lucide-react-native';
+import { DesignTokens } from '@/constants/designTokens';
 
 interface AuthHeaderProps {
   title: string;
@@ -22,19 +23,35 @@ export const AuthHeader: React.FC<AuthHeaderProps> = ({
   colors
 }) => {
   return (
-    <View style={styles.header}>
+    <View style={[styles.header, { marginBottom: DesignTokens.spacing['4xl'] }]}>
       {showBackButton && onBackPress && (
         <TouchableOpacity 
           onPress={onBackPress}
-          style={styles.backButton}
+          style={[styles.backButton, { marginBottom: DesignTokens.spacing.xl, padding: DesignTokens.spacing.sm }]}
         >
-          <ArrowLeft size={24} color={colors.text} />
+          <ArrowLeft size={DesignTokens.widths.icon.lg} color={colors.text} />
         </TouchableOpacity>
       )}
-      <Text style={[styles.title, { color: colors.text }]}>
+      <Text style={[
+        styles.title, 
+        { 
+          color: colors.text,
+          fontFamily: DesignTokens.typography.fontFamily.bold,
+          fontSize: DesignTokens.typography.fontSize['4xl'],
+          marginBottom: DesignTokens.spacing.sm,
+        }
+      ]}>
         {title}
       </Text>
-      <Text style={[styles.subtitle, { color: colors.textSecondary }]}>
+      <Text style={[
+        styles.subtitle, 
+        { 
+          color: colors.textSecondary,
+          fontFamily: DesignTokens.typography.fontFamily.regular,
+          fontSize: DesignTokens.typography.fontSize.lg,
+          lineHeight: DesignTokens.typography.fontSize.lg * DesignTokens.typography.lineHeight.normal,
+        }
+      ]}>
         {subtitle}
       </Text>
     </View>
@@ -43,24 +60,15 @@ export const AuthHeader: React.FC<AuthHeaderProps> = ({
 
 const styles = StyleSheet.create({
   header: {
-    marginBottom: 40,
     alignItems: 'flex-start',
   },
   backButton: {
     alignSelf: 'flex-start',
-    marginBottom: 20,
-    padding: 8,
   },
   title: {
-    fontFamily: 'Inter-Bold',
-    fontSize: 28,
-    marginBottom: 8,
     textAlign: 'left',
   },
   subtitle: {
-    fontFamily: 'Inter-Regular',
-    fontSize: 16,
     textAlign: 'left',
-    lineHeight: 24,
   },
 });
