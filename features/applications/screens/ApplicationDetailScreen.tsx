@@ -7,6 +7,9 @@ import { useAuth } from '@/features/auth/AuthContext';
 import { useLocalSearchParams, router } from 'expo-router';
 import { User, DollarSign, Briefcase, Users, FileText, CreditCard as Edit3, Send } from 'lucide-react-native';
 
+// Componentes compartidos
+import { SegmentedControl } from '@/components/shared/molecules/SegmentedControl';
+
 // Hooks personalizados
 import { useApplicationDetailsData } from '../hooks/useApplicationDetailsData';
 import { TabType } from '../types';
@@ -19,7 +22,6 @@ import { PrimaryButton } from '@/components/shared/atoms/PrimaryButton';
 
 // Componentes existentes
 import { QuickAccessGrid } from '../components/QuickAccessGrid';
-import { ApplicationTabNavigation } from '../components/ApplicationTabNavigation';
 import { InfoSectionCard, InfoRow } from '../components/InfoSectionCard';
 import { DocumentDetailCard } from '../components/DocumentDetailCard';
 import { FinancialOverviewCard } from '../components/FinancialOverviewCard';
@@ -333,13 +335,129 @@ export default function ApplicationDetailScreen() {
         </View>
 
         {/* Componente Quick Access Grid reutilizable */}
-        <QuickAccessGrid colors={colors} />
+        <View style={[styles.section, { marginBottom: DesignTokens.spacing['2xl'] }]}>
+          <QuickAccessGrid colors={colors} />
+        </View>
 
-        {/* Componente Tab Navigation reutilizable */}
-        <ApplicationTabNavigation
-          tabs={tabs}
-          activeTab={activeTab}
-          onTabChange={setActiveTab}
+        {/* Segmented Control Navigation */}
+        <View style={[styles.section, { marginBottom: DesignTokens.spacing['2xl'] }]}>
+          <SegmentedControl
+            options={tabs}
+            selectedValue={activeTab}
+            onValueChange={setActiveTab}
+            colors={colors}
+          />
+        </View>
+
+        {/* Tab Content */}
+        <View style={[styles.section, { marginBottom: DesignTokens.spacing['2xl'] }]}>
+          {renderTabContent()}
+        </View>
+
+        {/* Componente Financial Overview Card reutilizable */}
+        <View style={[styles.section, { marginBottom: DesignTokens.spacing['2xl'] }]}>
+          <FinancialOverviewCard
+            financialData={applicationData.financialInfo}
+            colors={colors}
+          />
+        </View>
+      </ScrollView>
+    </SafeAreaView>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  demoBanner: {
+    paddingVertical: 8,
+    alignItems: 'center',
+  },
+  demoText: {
+    fontFamily: 'DM-Sans-SemiBold',
+    fontSize: 14,
+  },
+  applicationHeader: {
+    paddingHorizontal: 20,
+    paddingVertical: 16,
+    marginBottom: DesignTokens.spacing['2xl'],
+  },
+  clientName: {
+    fontFamily: 'DM-Sans-Bold',
+    fontSize: 24,
+    fontWeight: '600',
+    marginBottom: 16,
+    letterSpacing: -0.025,
+  },
+  actionButtons: {
+    flexDirection: 'row',
+    gap: 8,
+    marginBottom: 16,
+  },
+  editButtonContainer: {
+    flex: 1,
+  },
+  sendButtonContainer: {
+    flex: 2,
+  },
+  progressSection: {
+    gap: 8,
+  },
+  progressHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  progressLabel: {
+    fontFamily: 'DM-Sans-Medium',
+    fontSize: 16,
+    fontWeight: '500',
+  },
+  progressText: {
+    fontFamily: 'DM-Sans-Regular',
+    fontSize: 16,
+    fontWeight: '400',
+  },
+  progressBarBackground: {
+    height: 8,
+    borderRadius: 4,
+    overflow: 'hidden',
+  },
+  progressBarFill: {
+    height: '100%',
+    borderRadius: 4,
+  },
+  content: {
+    flex: 1,
+  },
+  section: {
+    paddingHorizontal: DesignTokens.spacing.xl,
+  },
+  tabContent: {
+    paddingTop: 0,
+  },
+  infoSection: {
+    padding: 20,
+    borderRadius: 16,
+    borderWidth: 1,
+    marginBottom: DesignTokens.spacing['2xl'],
+  },
+  sectionHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 16,
+    gap: 8,
+  },
+  sectionTitle: {
+    fontFamily: 'DM-Sans-Bold',
+    fontSize: 16,
+  },
+  documentsColumn: {
+    gap: 16,
+  },
+});
+
           colors={colors}
         />
 

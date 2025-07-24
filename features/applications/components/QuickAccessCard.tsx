@@ -30,6 +30,7 @@ export const QuickAccessCard: React.FC<QuickAccessCardProps> = ({
         styles.card, 
         { 
           backgroundColor: colors.card, 
+          backgroundColor: colors.surfaceSecondary,
           borderColor: colors.border,
           borderRadius: DesignTokens.borderRadius.lg,
           padding: DesignTokens.spacing.lg,
@@ -70,7 +71,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    minHeight: 120,
+    minHeight: 90,
   },
   iconContainer: {
     justifyContent: 'center',

@@ -61,7 +61,8 @@ export const InfoSectionCard: React.FC<InfoSectionCardProps> = ({
                 styles.infoValue, 
                 { 
                   color: row.isPlaceholder ? colors.textTertiary : colors.text,
-                  fontStyle: row.isPlaceholder ? 'italic' : 'normal'
+                  fontFamily: DesignTokens.typography.fontFamily.bold,
+                  fontSize: DesignTokens.typography.fontSize.lg,
                 }
               ]}>
                 {row.value}
@@ -125,9 +126,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   infoValue: {
-    fontFamily: 'DM-Sans-SemiBold',
-    fontSize: 14,
-    fontWeight: '600',
+    fontWeight: DesignTokens.typography.fontWeight.bold,
     flex: 1,
   },
   editButtonContainer: {

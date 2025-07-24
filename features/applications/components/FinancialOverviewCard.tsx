@@ -87,11 +87,10 @@ export const FinancialOverviewCard: React.FC<FinancialOverviewCardProps> = ({
 
 const styles = StyleSheet.create({
   financialCard: {
-    margin: 20,
-    marginTop: 0,
-    padding: 20,
-    borderRadius: 16,
+    padding: DesignTokens.spacing.xl,
+    borderRadius: DesignTokens.borderRadius.xl,
     borderWidth: 1,
+    ...DesignTokens.shadows.sm,
   },
   financialHeader: {
     flexDirection: 'row',
