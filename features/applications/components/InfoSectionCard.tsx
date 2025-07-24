@@ -2,6 +2,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { ChevronRight, CircleAlert as AlertCircle } from 'lucide-react-native';
+import { DesignTokens } from '@/constants/designTokens';
 
 export interface InfoRow {
   label: string;
