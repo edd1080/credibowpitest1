@@ -51,7 +51,7 @@ export const QuickAccessGrid: React.FC<QuickAccessGridProps> = ({ colors }) => {
     {
       id: 'review',
       title: 'Revisión Final',
-      icon: <CircleCheck size={DesignTokens.widths.icon.lg} color="#6B7280" />,
+      icon: <CheckCircle size={DesignTokens.widths.icon.lg} color="#6B7280" />,
       completed: false,
     },
   ];
