@@ -1,15 +1,15 @@
 // Componente molecular QuickAccessCard - tarjeta individual de acceso rápido
 import React from 'react';
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { DesignTokens } from '@/constants/designTokens';
 
 interface QuickAccessCardProps {
   icon: React.ReactNode;
   title: string;
-  subtitle: string;
   completed: boolean;
   onPress: () => void;
   colors: {
-    surfaceSecondary: string;
+    card: string;
     border: string;
     text: string;
     textSecondary: string;
@@ -19,7 +19,6 @@ interface QuickAccessCardProps {
 export const QuickAccessCard: React.FC<QuickAccessCardProps> = ({
   icon,
   title,
-  subtitle,
   completed,
   onPress,
   colors
@@ -27,47 +26,59 @@ export const QuickAccessCard: React.FC<QuickAccessCardProps> = ({
   return (
     <TouchableOpacity
       onPress={onPress}
-      style={[styles.quickAccessCard, { backgroundColor: colors.surfaceSecondary, borderColor: colors.border }]}
+      style={[
+        styles.card, 
+        { 
+          backgroundColor: colors.card, 
+          borderColor: colors.border,
+          borderRadius: DesignTokens.borderRadius.lg,
+          padding: DesignTokens.spacing.lg,
+          ...DesignTokens.shadows.sm,
+        }
+      ]}
+      activeOpacity={0.7}
     >
-      <View style={[styles.quickAccessIcon, { backgroundColor: '#E3F2FD' }]}>
+      <View style={[
+        styles.iconContainer, 
+        { 
+          backgroundColor: '#F3F4F6',
+          width: DesignTokens.spacing['4xl'],
+          height: DesignTokens.spacing['4xl'],
+          borderRadius: DesignTokens.spacing.xl,
+          marginBottom: DesignTokens.spacing.md,
+        }
+      ]}>
         {icon}
       </View>
-      <Text style={[styles.quickAccessCardTitle, { color: colors.text }]}>
+      <Text style={[
+        styles.title, 
+        { 
+          color: colors.text,
+          fontSize: DesignTokens.typography.fontSize.sm,
+          fontFamily: DesignTokens.typography.fontFamily.medium,
+        }
+      ]} numberOfLines={2}>
         {title}
-      </Text>
-      <Text style={[styles.quickAccessCardSubtitle, { color: colors.textSecondary }]}>
-        {subtitle}
       </Text>
     </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
-  quickAccessCard: {
-    width: '48%',
-    padding: 16,
-    borderRadius: 12,
+  card: {
+    flex: 1,
     borderWidth: 1,
     alignItems: 'center',
+    justifyContent: 'center',
+    minHeight: 100,
   },
-  quickAccessIcon: {
-    width: 48,
-    height: 48,
-    borderRadius: 24,
+  iconContainer: {
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 12,
   },
-  quickAccessCardTitle: {
-    fontFamily: 'DM-Sans-SemiBold',
-    fontSize: 14,
+  title: {
     textAlign: 'center',
-    marginBottom: 4,
-    lineHeight: 18,
-  },
-  quickAccessCardSubtitle: {
-    fontFamily: 'DM-Sans-Regular',
-    fontSize: 12,
-    textAlign: 'center',
+    fontWeight: DesignTokens.typography.fontWeight.medium,
+    lineHeight: DesignTokens.typography.fontSize.sm * DesignTokens.typography.lineHeight.tight,
   },
 });

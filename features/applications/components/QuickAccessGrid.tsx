@@ -1,17 +1,18 @@
 // Componente organismo QuickAccessGrid - cuadrícula de acceso rápido a secciones
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { User, DollarSign, Briefcase, Users, FileText, CircleCheck as CheckCircle } from 'lucide-react-native';
+import { User, DollarSign, MapPin, Users, FileText, CircleCheck as CheckCircle } from 'lucide-react-native';
 import { QuickAccessCard } from './QuickAccessCard';
+import { DesignTokens } from '@/constants/designTokens';
 
 interface QuickAccessGridProps {
   colors: {
     card: string;
     cardBorder: string;
     text: string;
-    surfaceSecondary: string;
     border: string;
     textSecondary: string;
+    primary: string;
   };
 }
 
@@ -20,43 +21,37 @@ export const QuickAccessGrid: React.FC<QuickAccessGridProps> = ({ colors }) => {
     {
       id: 'identification',
       title: 'Identificación y Contacto',
-      subtitle: 'Datos básicos',
-      icon: <User size={24} color="#1976D2" />,
+      icon: <User size={DesignTokens.widths.icon.lg} color="#6B7280" />,
       completed: false,
     },
     {
       id: 'finances',
       title: 'Finanzas y Patrimonio',
-      subtitle: 'Información financiera',
-      icon: <DollarSign size={24} color="#1976D2" />,
+      icon: <DollarSign size={DesignTokens.widths.icon.lg} color="#6B7280" />,
       completed: false,
     },
     {
       id: 'business',
       title: 'Negocio y Perfil Económico',
-      subtitle: 'Perfil económico',
-      icon: <Briefcase size={24} color="#1976D2" />,
+      icon: <MapPin size={DesignTokens.widths.icon.lg} color="#6B7280" />,
       completed: false,
     },
     {
       id: 'guarantors',
-      title: 'Garantías, Fiadores y Referencias',
-      subtitle: 'Fiadores y referencias',
-      icon: <Users size={24} color="#1976D2" />,
+      title: 'Fiadores y Referencias',
+      icon: <Users size={DesignTokens.widths.icon.lg} color="#6B7280" />,
       completed: false,
     },
     {
       id: 'documents',
-      title: 'Documentos y Cierre',
-      subtitle: 'Documentos y cierre',
-      icon: <FileText size={24} color="#1976D2" />,
+      title: 'Documentos',
+      icon: <FileText size={DesignTokens.widths.icon.lg} color="#6B7280" />,
       completed: false,
     },
     {
       id: 'review',
       title: 'Revisión Final',
-      subtitle: 'Revisión final',
-      icon: <CheckCircle size={24} color="#1976D2" />,
+      icon: <CircleCheck size={DesignTokens.widths.icon.lg} color="#6B7280" />,
       completed: false,
     },
   ];
@@ -67,18 +62,37 @@ export const QuickAccessGrid: React.FC<QuickAccessGridProps> = ({ colors }) => {
   };
 
   return (
-    <View style={[styles.quickAccessContainer, { backgroundColor: colors.card, borderColor: colors.cardBorder }]}>
-      <Text style={[styles.quickAccessTitle, { color: colors.text }]}>
+    <View style={[
+      styles.container, 
+      { 
+        backgroundColor: colors.card, 
+        borderColor: colors.cardBorder,
+        borderRadius: DesignTokens.borderRadius.xl,
+        padding: DesignTokens.spacing.lg,
+        margin: DesignTokens.spacing.xl,
+        ...DesignTokens.shadows.sm,
+      }
+    ]}>
+      <View style={[styles.header, { marginBottom: DesignTokens.spacing.lg }]}>
+        <FileText size={DesignTokens.widths.icon.lg} color={colors.primary} />
+        <Text style={[
+          styles.title, 
+          { 
+            color: colors.text,
+            fontSize: DesignTokens.typography.fontSize.lg,
+            fontFamily: DesignTokens.typography.fontFamily.semiBold,
+          }
+        ]}>
         Acceso Rápido a Secciones
-      </Text>
+        </Text>
+      </View>
       
-      <View style={styles.quickAccessGrid}>
+      <View style={[styles.grid, { gap: DesignTokens.spacing.sm }]}>
         {quickAccessSections.map((section) => (
           <QuickAccessCard
             key={section.id}
             icon={section.icon}
             title={section.title}
-            subtitle={section.subtitle}
             completed={section.completed}
             onPress={() => handleSectionPress(section.id)}
             colors={colors}
@@ -90,20 +104,20 @@ export const QuickAccessGrid: React.FC<QuickAccessGridProps> = ({ colors }) => {
 };
 
 const styles = StyleSheet.create({
-  quickAccessContainer: {
-    margin: 20,
-    padding: 20,
-    borderRadius: 16,
+  container: {
     borderWidth: 1,
   },
-  quickAccessTitle: {
-    fontFamily: 'DM-Sans-Bold',
-    fontSize: 18,
-    marginBottom: 16,
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: DesignTokens.spacing.sm,
   },
-  quickAccessGrid: {
+  title: {
+    fontWeight: DesignTokens.typography.fontWeight.semiBold,
+  },
+  grid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    gap: 12,
+    justifyContent: 'space-between',
   },
 });
