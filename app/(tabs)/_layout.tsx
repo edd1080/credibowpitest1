@@ -1,6 +1,7 @@
 // Tab layout configuration with custom bottom navigation
 import { Tabs } from 'expo-router';
 import { Chrome as Home, FileText, Bell, Settings } from 'lucide-react-native';
+import DesignTokens from '../../constants/designTokens';
 import { useTheme } from '@/contexts/ThemeContext';
 import { Platform } from 'react-native';
 
