@@ -1,7 +1,7 @@
 // Componente organismo QuickAccessGrid - cuadrícula de acceso rápido a secciones
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { User, DollarSign, MapPin, Users, FileText, CircleCheck as CheckCircle } from 'lucide-react-native';
+import { User, DollarSign, MapPin, Users, FileText, CheckCircle } from 'lucide-react-native';
 import { QuickAccessCard } from './QuickAccessCard';
 import { DesignTokens } from '@/constants/designTokens';
 

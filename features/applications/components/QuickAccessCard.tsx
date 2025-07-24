@@ -66,11 +66,11 @@ export const QuickAccessCard: React.FC<QuickAccessCardProps> = ({
 
 const styles = StyleSheet.create({
   card: {
-    flex: 1,
+    width: '48%',
     borderWidth: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    minHeight: 100,
+    minHeight: 120,
   },
   iconContainer: {
     justifyContent: 'center',
